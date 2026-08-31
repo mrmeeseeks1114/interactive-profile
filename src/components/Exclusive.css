@@ -1,0 +1,742 @@
+/* =====================================
+   PRIVATE LOG
+===================================== */
+
+.exclusive-section {
+  width: 100%;
+  padding: 100px 24px;
+  box-sizing: border-box;
+  background: #080808;
+}
+
+.exclusive-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =====================================
+   MAIN BOX
+===================================== */
+
+.exclusive-box {
+  position: relative;
+  width: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+
+  border-radius: 22px;
+  border: 1px solid #321010;
+
+  background:
+    linear-gradient(
+      135deg,
+      #190000,
+      #0d0d0d 48%,
+      #090909
+    );
+
+  overflow: hidden;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+.exclusive-box::before {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  left: -180px;
+  top: -180px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 0, 0, 0.1);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+}
+
+.exclusive-box::after {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  right: -180px;
+  bottom: -180px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 0, 0, 0.07);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+}
+
+/* =====================================
+   LOCKED
+===================================== */
+
+.exclusive-box.locked {
+  text-align: center;
+}
+
+.exclusive-icon {
+  position: relative;
+  z-index: 1;
+
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #190000;
+
+  border: 1px solid #4a1111;
+
+  color: #ff2028;
+
+  font-size: 28px;
+}
+
+/* =====================================
+   LABEL
+===================================== */
+
+.exclusive-label {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  color: #ff2028;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 4px;
+
+  margin-bottom: 12px;
+}
+
+/* =====================================
+   TITLES
+===================================== */
+
+.exclusive-box h2 {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(30px, 5vw, 48px);
+
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+
+  line-height: 1.05;
+}
+
+.exclusive-description {
+  position: relative;
+  z-index: 1;
+
+  margin: 17px 0 30px;
+
+  color: #999999;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* =====================================
+   PASSWORD
+===================================== */
+
+.exclusive-login {
+  position: relative;
+  z-index: 2;
+
+  width: min(500px, 100%);
+
+  margin: 0 auto;
+
+  display: flex;
+
+  gap: 10px;
+}
+
+.exclusive-login .ant-input-affix-wrapper {
+  flex: 1;
+
+  background: #111111 !important;
+
+  border-color: #333333 !important;
+
+  box-shadow: none !important;
+}
+
+.exclusive-login .ant-input {
+  color: #ffffff !important;
+
+  background: transparent !important;
+}
+
+.exclusive-login .ant-input::placeholder {
+  color: #666666 !important;
+}
+
+.exclusive-login button {
+  min-width: 130px;
+
+  font-weight: 800;
+
+  border-radius: 9px;
+}
+
+.exclusive-hint {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  margin-top: 15px;
+
+  color: #555555;
+
+  font-size: 11px;
+}
+
+/* =====================================
+   DASHBOARD HEADER
+===================================== */
+
+.exclusive-dashboard-header {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 20px;
+
+  margin-bottom: 35px;
+}
+
+.exclusive-dashboard-header p {
+  margin: 10px 0 0;
+
+  color: #888888;
+
+  font-size: 14px;
+}
+
+.exclusive-dashboard-header button {
+  background: #171717;
+
+  border-color: #333333;
+
+  color: #ffffff;
+}
+
+/* =====================================
+   LOADING
+===================================== */
+
+.exclusive-loading {
+  position: relative;
+  z-index: 1;
+
+  padding: 70px 20px;
+
+  text-align: center;
+}
+
+.exclusive-loading p {
+  margin-top: 15px;
+
+  color: #777777;
+}
+
+/* =====================================
+   STATISTICS
+===================================== */
+
+.exclusive-stats {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 14px;
+
+  margin-bottom: 25px;
+}
+
+.exclusive-stat {
+  padding: 22px 18px;
+
+  border-radius: 13px;
+
+  background: #111111;
+
+  border: 1px solid #282828;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.exclusive-stat svg {
+  color: #ff2028;
+
+  font-size: 20px;
+
+  margin-bottom: 5px;
+}
+
+.exclusive-stat strong {
+  color: #ffffff;
+
+  font-size: 28px;
+
+  font-weight: 900;
+}
+
+.exclusive-stat span {
+  color: #666666;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+/* =====================================
+   PANELS
+===================================== */
+
+.exclusive-panel {
+  position: relative;
+  z-index: 1;
+
+  margin-top: 15px;
+
+  border-radius: 14px;
+
+  background: #0e0e0e;
+
+  border: 1px solid #252525;
+
+  overflow: hidden;
+}
+
+.panel-title {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 17px 20px;
+
+  border-bottom: 1px solid #252525;
+
+  background: #131313;
+}
+
+.panel-title h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 900;
+}
+
+.panel-title span {
+  color: #666666;
+
+  font-size: 10px;
+}
+
+/* =====================================
+   VISITORS
+===================================== */
+
+.visitor-list {
+  padding: 8px 20px;
+}
+
+.visitor-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.visitor-row:last-child {
+  border-bottom: none;
+}
+
+.visitor-user {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.visitor-avatar {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #210000;
+
+  border: 1px solid #431010;
+
+  color: #ff2028;
+
+  font-size: 12px;
+
+  font-weight: 900;
+}
+
+.visitor-user strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 13px;
+}
+
+.visitor-user small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #666666;
+
+  font-size: 10px;
+}
+
+.status-dot {
+  color: #ff2028;
+
+  font-size: 9px;
+}
+
+/* =====================================
+   MESSAGES
+===================================== */
+
+.message-list {
+  padding: 10px 20px;
+}
+
+.message-entry {
+  padding: 17px 0;
+
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.message-entry:last-child {
+  border-bottom: none;
+}
+
+.message-entry-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.message-entry-top strong {
+  color: #ff2028;
+
+  font-size: 12px;
+}
+
+.message-entry-top small {
+  color: #555555;
+
+  font-size: 10px;
+}
+
+.message-entry p {
+  margin: 9px 0 0;
+
+  color: #cccccc;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+/* =====================================
+   QUIZ RESULTS
+===================================== */
+
+.quiz-result-list {
+  padding: 10px 20px;
+}
+
+.quiz-result {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.quiz-result:last-child {
+  border-bottom: none;
+}
+
+.quiz-result > div:first-child strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 13px;
+}
+
+.quiz-result > div:first-child small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #555555;
+
+  font-size: 10px;
+}
+
+.quiz-score {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.quiz-score strong {
+  color: #ff2028;
+
+  font-size: 15px;
+}
+
+.quiz-score span {
+  padding: 4px 8px;
+
+  border-radius: 5px;
+
+  background: #210000;
+
+  color: #ff2028;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+/* =====================================
+   ACTIVITY
+===================================== */
+
+.activity-list {
+  padding: 10px 20px;
+}
+
+.activity-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.activity-row:last-child {
+  border-bottom: none;
+}
+
+.activity-row > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.activity-row strong {
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+.activity-row span {
+  color: #ff2028;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.activity-row small {
+  color: #666666;
+
+  font-size: 10px;
+}
+
+.activity-row time {
+  color: #555555;
+
+  font-size: 9px;
+
+  white-space: nowrap;
+}
+
+/* =====================================
+   ANT DESIGN EMPTY
+===================================== */
+
+.exclusive-panel .ant-empty {
+  margin: 30px 0;
+}
+
+.exclusive-panel .ant-empty-description {
+  color: #666666;
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 800px) {
+
+  .exclusive-section {
+    padding: 70px 16px;
+  }
+
+  .exclusive-box {
+    padding: 30px 18px;
+  }
+
+  .exclusive-stats {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .exclusive-dashboard-header {
+    flex-direction: column;
+  }
+
+  .exclusive-dashboard-header button {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  .exclusive-login {
+    flex-direction: column;
+  }
+
+  .exclusive-login button {
+    width: 100%;
+  }
+
+  .exclusive-stats {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+  }
+
+  .exclusive-stat {
+    padding: 16px 12px;
+  }
+
+  .exclusive-stat strong {
+    font-size: 23px;
+  }
+
+  .panel-title {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .message-entry-top {
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+  .quiz-result {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .activity-row {
+    flex-direction: column;
+
+    gap: 7px;
+  }
+}
