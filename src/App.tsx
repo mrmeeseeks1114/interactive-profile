@@ -54,7 +54,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   /* =====================================
-     ACTIVE MODAL
+     MODALS
   ===================================== */
 
   const [activeModal, setActiveModal] =
@@ -65,36 +65,51 @@ function App() {
   ===================================== */
 
   const [password, setPassword] = useState("");
-
-  const [
-    exclusiveUnlocked,
-    setExclusiveUnlocked,
-  ] = useState(false);
+  const [exclusiveUnlocked, setExclusiveUnlocked] =
+    useState(false);
 
   /* =====================================
-     CHECK SAVED SESSION
+     RANDOM TAGLINE FUNCTION
+  ===================================== */
+
+  const getRandomTagline = () => {
+    if (!randomTaglines.length) {
+      return "welcome to the chaos.";
+    }
+
+    const randomIndex = Math.floor(
+      Math.random() * randomTaglines.length
+    );
+
+    return randomTaglines[randomIndex];
+  };
+
+  /* =====================================
+     INITIAL LOAD
   ===================================== */
 
   useEffect(() => {
     const savedUsername =
-      sessionStorage.getItem(
-        "visitorUsername"
-      );
+      sessionStorage.getItem("visitorUsername");
 
     if (savedUsername) {
       setUsername(savedUsername);
       setEntered(true);
-
-      const randomIndex =
-        Math.floor(
-          Math.random() *
-            randomTaglines.length
-        );
-
-      setTagline(
-        randomTaglines[randomIndex]
-      );
     }
+
+    setTagline(getRandomTagline());
+  }, []);
+
+  /* =====================================
+     CHANGE TAGLINE OVER TIME
+  ===================================== */
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTagline(getRandomTagline());
+    }, 4000);
+
+    return () => clearInterval(interval);
   }, []);
 
   /* =====================================
@@ -102,8 +117,7 @@ function App() {
   ===================================== */
 
   const enterWebsite = async () => {
-    const cleanUsername =
-      username.trim();
+    const cleanUsername = username.trim();
 
     if (!cleanUsername) {
       message.warning(
@@ -113,19 +127,7 @@ function App() {
       return;
     }
 
-    /* RANDOM TAGLINE */
-
-    const randomIndex =
-      Math.floor(
-        Math.random() *
-          randomTaglines.length
-      );
-
-    setTagline(
-      randomTaglines[randomIndex]
-    );
-
-    /* SAVE SESSION */
+    setTagline(getRandomTagline());
 
     sessionStorage.setItem(
       "visitorUsername",
@@ -133,41 +135,37 @@ function App() {
     );
 
     /* =================================
-       SAVE VISITOR TO SUPABASE
+       SAVE VISITOR
     ================================= */
 
     try {
-      const { error } =
+      const { error: visitorError } =
         await supabase
           .from("visitors")
           .insert({
-            username:
-              cleanUsername,
+            username: cleanUsername,
           });
 
-      if (error) {
+      if (visitorError) {
         console.error(
           "Visitor error:",
-          error
+          visitorError
         );
       }
 
-      /* SAVE INTERACTION */
+      /* ================================
+         SAVE INTERACTION
+      ================================= */
 
-      const {
-        error: interactionError,
-      } = await supabase
-        .from("interactions")
-        .insert({
-          username:
-            cleanUsername,
-
-          type:
-            "Entered Website",
-
-          details:
-            "Visitor entered the site",
-        });
+      const { error: interactionError } =
+        await supabase
+          .from("interactions")
+          .insert({
+            username: cleanUsername,
+            type: "Entered Website",
+            details:
+              "Visitor entered the site",
+          });
 
       if (interactionError) {
         console.error(
@@ -182,12 +180,7 @@ function App() {
       );
     }
 
-    /* ENTER WEBSITE */
-
-    setUsername(
-      cleanUsername
-    );
-
+    setUsername(cleanUsername);
     setEntered(true);
 
     message.success(
@@ -204,6 +197,14 @@ function App() {
   };
 
   /* =====================================
+     OPEN MINI GAMES
+  ===================================== */
+
+  const openMiniGames = () => {
+    setActiveModal("miniGames");
+  };
+
+  /* =====================================
      UNLOCK EXCLUSIVE
   ===================================== */
 
@@ -213,7 +214,6 @@ function App() {
       exclusivePassword
     ) {
       setExclusiveUnlocked(true);
-
       setPassword("");
 
       message.success(
@@ -229,46 +229,6 @@ function App() {
   };
 
   /* =====================================
-     OPEN QUIZ
-  ===================================== */
-
-  const openQuiz = () => {
-    setActiveModal("quiz");
-  };
-
-  /* =====================================
-     OPEN POLL
-  ===================================== */
-
-  const openPoll = () => {
-    setActiveModal("poll");
-  };
-
-  /* =====================================
-     OPEN MINI GAMES
-  ===================================== */
-
-  const openMiniGames = () => {
-    setActiveModal("miniGames");
-  };
-
-  /* =====================================
-     OPEN RANDOM
-  ===================================== */
-
-  const openRandom = () => {
-    setActiveModal("random");
-  };
-
-  /* =====================================
-     OPEN MESSAGE
-  ===================================== */
-
-  const openMessage = () => {
-    setActiveModal("message");
-  };
-
-  /* =====================================
      LOGIN SCREEN
   ===================================== */
 
@@ -280,11 +240,9 @@ function App() {
             theme.darkAlgorithm,
 
           token: {
-            colorPrimary:
-              "#ff2020",
+            colorPrimary: "#ff2020",
 
-            colorText:
-              "#ffffff",
+            colorText: "#ffffff",
 
             colorTextHeading:
               "#ffffff",
@@ -298,13 +256,9 @@ function App() {
       >
         <div className="login-page">
 
-          {/* GLOW */}
-
           <div className="login-glow glow-one" />
 
           <div className="login-glow glow-two" />
-
-          {/* LOGIN BOX */}
 
           <div className="login-box">
 
@@ -318,15 +272,13 @@ function App() {
 
             <h1 className="login-title">
               {tagline ||
-                "I can do this all day"}
+                "welcome to the chaos."}
             </h1>
 
             <p className="login-description">
               random stuff, gaming,
-              music, anime & chaos.
+              music, anime, MCU & chaos.
             </p>
-
-            {/* USERNAME */}
 
             <div className="username-wrapper">
 
@@ -346,8 +298,7 @@ function App() {
                 }
                 onKeyDown={(event) => {
                   if (
-                    event.key ===
-                    "Enter"
+                    event.key === "Enter"
                   ) {
                     enterWebsite();
                   }
@@ -356,13 +307,9 @@ function App() {
 
             </div>
 
-            {/* ENTER */}
-
             <button
               className="enter-button"
-              onClick={
-                enterWebsite
-              }
+              onClick={enterWebsite}
             >
               ENTER
 
@@ -375,14 +322,10 @@ function App() {
               no real name needed :)
             </span>
 
-            {/* DECORATION */}
-
             <div className="login-decoration">
 
               <span />
-
               <span />
-
               <span />
 
             </div>
@@ -427,6 +370,7 @@ function App() {
         },
       }}
     >
+
       <Layout className="site">
 
         {/* =================================
@@ -436,14 +380,8 @@ function App() {
         <Navbar
           username={username}
           darkMode={darkMode}
-          setDarkMode={
-            setDarkMode
-          }
+          setDarkMode={setDarkMode}
         />
-
-        {/* =================================
-            CONTENT
-        ================================= */}
 
         <Content>
 
@@ -457,17 +395,14 @@ function App() {
 
             onExplore={() =>
               document
-                .getElementById(
-                  "explore"
-                )
+                .getElementById("explore")
                 ?.scrollIntoView({
-                  behavior:
-                    "smooth",
+                  behavior: "smooth",
                 })
             }
 
-            onMessage={
-              openMessage
+            onMessage={() =>
+              setActiveModal("message")
             }
           />
 
@@ -482,27 +417,25 @@ function App() {
           ================================= */}
 
           <InteractiveCards
-
-            onQuiz={
-              openQuiz
+            onQuiz={() =>
+              setActiveModal("quiz")
             }
 
-            onPoll={
-              openPoll
+            onPoll={() =>
+              setActiveModal("poll")
             }
 
             onMiniGames={
               openMiniGames
             }
 
-            onRandom={
-              openRandom
+            onRandom={() =>
+              setActiveModal("random")
             }
 
-            onMessage={
-              openMessage
+            onMessage={() =>
+              setActiveModal("message")
             }
-
           />
 
           {/* =================================
@@ -524,11 +457,10 @@ function App() {
           <Anime />
 
           {/* =================================
-              EXCLUSIVE
+              PRIVATE LOG
           ================================= */}
 
           <Exclusive
-
             unlocked={
               exclusiveUnlocked
             }
@@ -546,7 +478,6 @@ function App() {
             }
 
             onOpen={() => {}}
-
           />
 
         </Content>
@@ -556,8 +487,8 @@ function App() {
         ================================= */}
 
         <Footer className="footer">
-          this is so him. • made
-          with chaos ❤️
+          this is so him. • made with
+          chaos ❤️
         </Footer>
 
         {/* =================================
@@ -565,10 +496,8 @@ function App() {
         ================================= */}
 
         <MessageModal
-
           open={
-            activeModal ===
-            "message"
+            activeModal === "message"
           }
 
           onClose={
@@ -578,7 +507,6 @@ function App() {
           username={
             username
           }
-
         />
 
         {/* =================================
@@ -586,10 +514,8 @@ function App() {
         ================================= */}
 
         <QuizModal
-
           open={
-            activeModal ===
-            "quiz"
+            activeModal === "quiz"
           }
 
           onClose={
@@ -599,7 +525,6 @@ function App() {
           username={
             username
           }
-
         />
 
         {/* =================================
@@ -607,16 +532,13 @@ function App() {
         ================================= */}
 
         <PollModal
-
           open={
-            activeModal ===
-            "poll"
+            activeModal === "poll"
           }
 
           onClose={
             closeModal
           }
-
         />
 
         {/* =================================
@@ -624,10 +546,8 @@ function App() {
         ================================= */}
 
         <MiniGames
-
           open={
-            activeModal ===
-            "miniGames"
+            activeModal === "miniGames"
           }
 
           onClose={
@@ -637,7 +557,6 @@ function App() {
           username={
             username
           }
-
         />
 
         {/* =================================
@@ -645,19 +564,17 @@ function App() {
         ================================= */}
 
         <RandomModal
-
           open={
-            activeModal ===
-            "random"
+            activeModal === "random"
           }
 
           onClose={
             closeModal
           }
-
         />
 
       </Layout>
+
     </ConfigProvider>
   );
 }

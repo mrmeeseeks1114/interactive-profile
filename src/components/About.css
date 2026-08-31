@@ -1,0 +1,61 @@
+.about-info {
+  max-width: 900px;
+}
+
+.about-tag {
+  display: inline-block;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background: #220d12;
+  color: #ff2b2b;
+  font-size: 14px;
+}
+
+.about-info h1 {
+  margin: 0 0 18px;
+  font-size: 40px;
+}
+
+.about-status {
+  font-size: 18px;
+  color: #888;
+  min-height: 28px;
+}
+
+.about-status span {
+  color: #ff3030;
+  transition: opacity 0.3s ease;
+}
+
+.about-info p {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.about-icon {
+  color: #ff3030;
+  margin-right: 8px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 7px;
+  background: #252525;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.hero-buttons button:hover {
+  background: #ff2020;
+  transform: translateY(-2px);
+}
