@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-
 import {
   Button,
   Modal,
@@ -21,6 +20,7 @@ import "./Music.css";
 
 import albumImage from "../assets/loved-you-first.jpg";
 import girlIsMineImage from "../assets/the-girl-is-mine.jpg";
+import signOfTheTimesImage from "../assets/sign-of-the-times.jpg";
 
 const { Text } = Typography;
 
@@ -102,16 +102,45 @@ const songs: Song[] = [
         time: 94,
       },
       {
-        label: "🔥 ANOTHER HIGHLIGHT",
+        label: "ANOTHER GREAT PART",
         time: 140,
       },
       {
-        label: "🗣️ PEAK CONVO",
+        label: "PEAK CONVO",
         time: 180,
       },
     ],
 
     favoriteTime: 94,
+  },
+
+  {
+    id: "sign-of-the-times",
+
+    title: "Sign of the Times",
+
+    artist: "Harry Styles",
+
+    image: signOfTheTimesImage,
+
+    audio: "/music/sign-of-the-times.mp3",
+
+    parts: [
+      {
+        label: "INTRO",
+        time: 17,
+      },
+      {
+        label: "CHORUS",
+        time: 78,
+      },
+      {
+        label: "⭐ THIS PARTTT",
+        time: 240,
+      },
+    ],
+
+    favoriteTime: 240,
   },
 ];
 
@@ -186,7 +215,7 @@ export default function Music() {
 
     const wasPlaying = isPlaying;
 
-    // Stop current song
+    // Stop the current song
     if (audioRef.current) {
       audioRef.current.pause();
 
@@ -277,10 +306,9 @@ export default function Music() {
   /*
     IMPORTANT:
 
-    This ONLY opens the modal.
+    Opening the player ONLY opens the modal.
 
     It does NOT:
-    - stop the music
     - pause the music
     - restart the music
     - change the song
@@ -295,7 +323,7 @@ export default function Music() {
   // ===================================================
 
   /*
-    Closing the modal does NOT
+    Closing the player also DOES NOT
     stop the music.
   */
 
@@ -377,11 +405,6 @@ export default function Music() {
 
     setCurrentTime(time);
 
-    /*
-      Favorite highlight is active for
-      9 seconds after the favorite timestamp.
-    */
-
     if (
       time >= selectedSong.favoriteTime &&
       time <
@@ -435,11 +458,11 @@ export default function Music() {
       {/* =================================================
           AUDIO PLAYER
 
-          The audio element stays mounted even
-          when the player modal is closed.
+          This stays mounted even when
+          the modal is closed.
 
-          Therefore opening or closing the player
-          DOES NOT stop the song.
+          Therefore opening or closing
+          the player does NOT stop music.
       ================================================= */}
 
       <audio
@@ -557,9 +580,8 @@ export default function Music() {
                 onClick={() => {
 
                   /*
-                    If this is a different song,
-                    change to it and immediately
-                    start playing.
+                    Different song:
+                    switch and play it.
                   */
 
                   if (
@@ -575,7 +597,7 @@ export default function Music() {
                   }
 
                   /*
-                    Same song =
+                    Same song:
                     normal play/pause.
                   */
 
@@ -736,9 +758,7 @@ export default function Music() {
               icon={
                 <StepForwardFilled />
               }
-              onClick={
-                nextPart
-              }
+              onClick={nextPart}
             />
 
           </div>
@@ -767,8 +787,7 @@ export default function Music() {
                     /*
                       If a song is currently
                       playing, changeSong()
-                      automatically continues
-                      playing the new song.
+                      continues playing.
                     */
 
                     changeSong(
