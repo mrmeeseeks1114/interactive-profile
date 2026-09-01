@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+
 import {
   Button,
   Modal,
@@ -19,46 +20,216 @@ import {
 import "./Music.css";
 
 import albumImage from "../assets/loved-you-first.jpg";
+import girlIsMineImage from "../assets/the-girl-is-mine.jpg";
 
 const { Text } = Typography;
+
+// =====================================================
+// TYPES
+// =====================================================
 
 type SongPart = {
   label: string;
   time: number;
 };
 
-const songParts: SongPart[] = [
+type Song = {
+  id: string;
+  title: string;
+  artist: string;
+  image: string;
+  audio: string;
+  parts: SongPart[];
+  favoriteTime: number;
+};
+
+// =====================================================
+// SONG DATA
+// =====================================================
+
+const songs: Song[] = [
   {
-    label: "INTRO",
-    time: 8,
+    id: "loved-you-first",
+
+    title: "Loved You First",
+
+    artist: "One Direction",
+
+    image: albumImage,
+
+    audio: "/music/loved-you-first.mp3",
+
+    parts: [
+      {
+        label: "INTRO",
+        time: 8,
+      },
+      {
+        label: "CHORUS",
+        time: 31,
+      },
+      {
+        label: "⭐ THIS PARTTT",
+        time: 121,
+      },
+    ],
+
+    favoriteTime: 121,
   },
+
   {
-    label: "CHORUS",
-    time: 31,
-  },
-  {
-    label: "⭐ THIS PARTTT",
-    time: 121,
+    id: "the-girl-is-mine",
+
+    title: "The Girl Is Mine",
+
+    artist: "Michael Jackson & Paul McCartney",
+
+    image: girlIsMineImage,
+
+    audio: "/music/the-girl-is-mine.mp3",
+
+    parts: [
+      {
+        label: "INTRO",
+        time: 12,
+      },
+      {
+        label: "CHORUS",
+        time: 29,
+      },
+      {
+        label: "⭐ THIS PARTTT",
+        time: 94,
+      },
+      {
+        label: "🔥 ANOTHER HIGHLIGHT",
+        time: 140,
+      },
+      {
+        label: "🗣️ PEAK CONVO",
+        time: 180,
+      },
+    ],
+
+    favoriteTime: 94,
   },
 ];
 
+// =====================================================
+// FORMAT TIME
+// =====================================================
+
 const formatTime = (seconds: number) => {
   const mins = Math.floor(seconds / 60);
+
   const secs = Math.floor(seconds % 60);
 
-  return `${mins}:${secs.toString().padStart(2, "0")}`;
+  return `${mins}:${secs
+    .toString()
+    .padStart(2, "0")}`;
 };
 
+// =====================================================
+// MUSIC COMPONENT
+// =====================================================
+
 export default function Music() {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef =
+    useRef<HTMLAudioElement | null>(null);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // ===================================================
+  // SELECTED SONG
+  // ===================================================
 
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [selectedSongId, setSelectedSongId] =
+    useState("loved-you-first");
 
-  const [favoriteActive, setFavoriteActive] = useState(false);
+  const selectedSong =
+    songs.find(
+      (song) =>
+        song.id === selectedSongId
+    ) || songs[0];
+
+  // ===================================================
+  // PLAYER STATE
+  // ===================================================
+
+  const [isOpen, setIsOpen] =
+    useState(false);
+
+  const [isPlaying, setIsPlaying] =
+    useState(false);
+
+  const [currentTime, setCurrentTime] =
+    useState(0);
+
+  const [duration, setDuration] =
+    useState(0);
+
+  const [favoriteActive, setFavoriteActive] =
+    useState(false);
+
+  // ===================================================
+  // CHANGE SONG
+  // ===================================================
+
+  const changeSong = (
+    songId: string,
+    shouldPlay = false
+  ) => {
+    const song = songs.find(
+      (item) =>
+        item.id === songId
+    );
+
+    if (!song) return;
+
+    const wasPlaying = isPlaying;
+
+    // Stop current song
+    if (audioRef.current) {
+      audioRef.current.pause();
+
+      audioRef.current.currentTime = 0;
+    }
+
+    setSelectedSongId(songId);
+
+    setCurrentTime(0);
+
+    setDuration(0);
+
+    setFavoriteActive(false);
+
+    setIsPlaying(false);
+
+    /*
+      If the previous song was playing,
+      continue playing the new song.
+
+      shouldPlay is used when clicking
+      the play button of another song.
+    */
+
+    if (shouldPlay || wasPlaying) {
+      setTimeout(() => {
+        if (!audioRef.current) return;
+
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(() => {
+            setIsPlaying(false);
+          });
+      }, 50);
+    }
+  };
+
+  // ===================================================
+  // PLAY SONG
+  // ===================================================
 
   const playSong = () => {
     if (!audioRef.current) return;
@@ -69,16 +240,27 @@ export default function Music() {
         setIsPlaying(true);
       })
       .catch(() => {
-        console.log("Audio could not be played.");
+        console.log(
+          "Audio could not be played."
+        );
       });
   };
+
+  // ===================================================
+  // PAUSE SONG
+  // ===================================================
 
   const pauseSong = () => {
     if (!audioRef.current) return;
 
     audioRef.current.pause();
+
     setIsPlaying(false);
   };
+
+  // ===================================================
+  // TOGGLE PLAY
+  // ===================================================
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -88,22 +270,68 @@ export default function Music() {
     }
   };
 
+  // ===================================================
+  // OPEN PLAYER
+  // ===================================================
+
+  /*
+    IMPORTANT:
+
+    This ONLY opens the modal.
+
+    It does NOT:
+    - stop the music
+    - pause the music
+    - restart the music
+    - change the song
+  */
+
+  const openPlayer = () => {
+    setIsOpen(true);
+  };
+
+  // ===================================================
+  // CLOSE PLAYER
+  // ===================================================
+
+  /*
+    Closing the modal does NOT
+    stop the music.
+  */
+
+  const closePlayer = () => {
+    setIsOpen(false);
+  };
+
+  // ===================================================
+  // JUMP TO SONG PART
+  // ===================================================
+
   const jumpTo = (seconds: number) => {
     if (!audioRef.current) return;
 
-    audioRef.current.currentTime = seconds;
+    audioRef.current.currentTime =
+      seconds;
+
     setCurrentTime(seconds);
 
     if (!isPlaying) {
       playSong();
     }
 
-    if (seconds === 121) {
+    if (
+      seconds ===
+      selectedSong.favoriteTime
+    ) {
       setFavoriteActive(true);
     } else {
       setFavoriteActive(false);
     }
   };
+
+  // ===================================================
+  // NEXT 10 SECONDS
+  // ===================================================
 
   const nextPart = () => {
     if (!audioRef.current) return;
@@ -113,9 +341,15 @@ export default function Music() {
       duration
     );
 
-    audioRef.current.currentTime = next;
+    audioRef.current.currentTime =
+      next;
+
     setCurrentTime(next);
   };
+
+  // ===================================================
+  // PREVIOUS 10 SECONDS
+  // ===================================================
 
   const previousPart = () => {
     if (!audioRef.current) return;
@@ -125,135 +359,244 @@ export default function Music() {
       0
     );
 
-    audioRef.current.currentTime = previous;
+    audioRef.current.currentTime =
+      previous;
+
     setCurrentTime(previous);
   };
+
+  // ===================================================
+  // TIME UPDATE
+  // ===================================================
 
   const handleTimeUpdate = () => {
     if (!audioRef.current) return;
 
-    const time = audioRef.current.currentTime;
+    const time =
+      audioRef.current.currentTime;
 
     setCurrentTime(time);
 
-    if (time >= 121 && time < 130) {
+    /*
+      Favorite highlight is active for
+      9 seconds after the favorite timestamp.
+    */
+
+    if (
+      time >= selectedSong.favoriteTime &&
+      time <
+        selectedSong.favoriteTime + 9
+    ) {
       setFavoriteActive(true);
+    } else {
+      setFavoriteActive(false);
     }
   };
+
+  // ===================================================
+  // LOADED METADATA
+  // ===================================================
 
   const handleLoadedMetadata = () => {
     if (!audioRef.current) return;
 
-    setDuration(audioRef.current.duration);
+    setDuration(
+      audioRef.current.duration
+    );
   };
+
+  // ===================================================
+  // SONG ENDED
+  // ===================================================
 
   const handleEnded = () => {
     setIsPlaying(false);
+
     setCurrentTime(0);
+
+    setFavoriteActive(false);
   };
+
+  // ===================================================
+  // PROGRESS
+  // ===================================================
 
   const progress =
     duration > 0
       ? (currentTime / duration) * 100
       : 0;
 
+  // ===================================================
+  // RENDER
+  // ===================================================
+
   return (
     <>
-      {/* =====================================================
-          AUDIO
-      ===================================================== */}
+      {/* =================================================
+          AUDIO PLAYER
+
+          The audio element stays mounted even
+          when the player modal is closed.
+
+          Therefore opening or closing the player
+          DOES NOT stop the song.
+      ================================================= */}
 
       <audio
         ref={audioRef}
-        src="/music/loved-you-first.mp3"
+        src={selectedSong.audio}
         onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
+        onLoadedMetadata={
+          handleLoadedMetadata
+        }
         onEnded={handleEnded}
         preload="metadata"
       />
 
-      {/* =====================================================
+      {/* =================================================
           MUSIC SECTION
-      ===================================================== */}
+      ================================================= */}
 
-      <section id="music" className="music-section">
-
+      <section
+        id="music"
+        className="music-section"
+      >
         <div className="music-section-heading">
+
           <span className="section-eyebrow">
             CURRENT OBSESSION
           </span>
 
           <h2>
-            song stuck in my head.
+            songs stuck in my head.
           </h2>
 
           <p>
-            click it. you might get stuck with it too.
+            click one. you might get
+            stuck with it too.
           </p>
+
         </div>
 
-        {/* =====================================================
-            MUSIC CARD
-        ===================================================== */}
+        {/* =================================================
+            SONG CARDS
+        ================================================= */}
 
-        <div className="music-card">
+        <div className="music-card-list">
 
-          <img
-            src={albumImage}
-            alt="Loved You First"
-            className="music-card-image"
-          />
+          {songs.map((song) => (
 
-          <div className="music-card-info">
-
-            <span className="music-card-label">
-              CURRENT OBSESSION
-            </span>
-
-            <h3>
-              Loved You First
-            </h3>
-
-            <p>
-              One Direction
-            </p>
-
-            <button
-              className="open-player-button"
-              onClick={() => setIsOpen(true)}
+            <div
+              className={`music-card ${
+                selectedSong.id ===
+                song.id
+                  ? "active-song"
+                  : ""
+              }`}
+              key={song.id}
             >
-              <PlayCircleFilled />
-              open player
-            </button>
 
-          </div>
+              {/* IMAGE */}
 
-          <Button
-            type="primary"
-            shape="circle"
-            size="large"
-            className="card-play-button"
-            icon={
-              isPlaying ? (
-                <PauseCircleFilled />
-              ) : (
-                <PlayCircleFilled />
-              )
-            }
-            onClick={togglePlay}
-          />
+              <img
+                src={song.image}
+                alt={`${song.title} album art`}
+                className="music-card-image"
+              />
+
+              {/* INFO */}
+
+              <div className="music-card-info">
+
+                <span className="music-card-label">
+
+                  {selectedSong.id ===
+                  song.id
+                    ? "CURRENT OBSESSION"
+                    : "STUCK IN MY HEAD"}
+
+                </span>
+
+                <h3>
+                  {song.title}
+                </h3>
+
+                <p>
+                  {song.artist}
+                </p>
+
+                {/* OPEN PLAYER */}
+
+                <button
+                  className="open-player-button"
+                  onClick={openPlayer}
+                >
+                  <PlayCircleFilled />
+
+                  open player
+                </button>
+
+              </div>
+
+              {/* PLAY BUTTON */}
+
+              <Button
+                type="primary"
+                shape="circle"
+                size="large"
+                className="card-play-button"
+                icon={
+                  selectedSong.id ===
+                    song.id &&
+                  isPlaying ? (
+                    <PauseCircleFilled />
+                  ) : (
+                    <PlayCircleFilled />
+                  )
+                }
+                onClick={() => {
+
+                  /*
+                    If this is a different song,
+                    change to it and immediately
+                    start playing.
+                  */
+
+                  if (
+                    selectedSong.id !==
+                    song.id
+                  ) {
+                    changeSong(
+                      song.id,
+                      true
+                    );
+
+                    return;
+                  }
+
+                  /*
+                    Same song =
+                    normal play/pause.
+                  */
+
+                  togglePlay();
+                }}
+              />
+
+            </div>
+
+          ))}
 
         </div>
-
       </section>
 
-      {/* =====================================================
+      {/* =================================================
           PLAYER MODAL
-      ===================================================== */}
+      ================================================= */}
 
       <Modal
         open={isOpen}
-        onCancel={() => setIsOpen(false)}
+        onCancel={closePlayer}
         footer={null}
         centered
         className="music-player-modal"
@@ -269,28 +612,31 @@ export default function Music() {
           <div className="spotify-top">
 
             <div className="spotify-song-title">
+
               <span>
                 Meseeks.exe • Music
               </span>
 
               <h1>
-                Loved You First
+                {selectedSong.title}
               </h1>
 
               <p>
-                One Direction
+                {selectedSong.artist}
               </p>
+
             </div>
 
             <Button
               className="switch-button"
-              icon={<SoundOutlined />}
+              icon={
+                <SoundOutlined />
+              }
             >
               Meseeks mode
             </Button>
 
           </div>
-
 
           {/* =================================================
               ALBUM IMAGE
@@ -299,13 +645,12 @@ export default function Music() {
           <div className="spotify-album-wrapper">
 
             <img
-              src={albumImage}
-              alt="Loved You First album art"
+              src={selectedSong.image}
+              alt={`${selectedSong.title} album art`}
               className="spotify-album"
             />
 
           </div>
-
 
           {/* =================================================
               SONG INFO
@@ -314,13 +659,15 @@ export default function Music() {
           <div className="spotify-song-info">
 
             <div>
+
               <h2>
-                Loved You First
+                {selectedSong.title}
               </h2>
 
               <p>
-                One Direction
+                {selectedSong.artist}
               </p>
+
             </div>
 
             <StarFilled
@@ -328,7 +675,6 @@ export default function Music() {
             />
 
           </div>
-
 
           {/* =================================================
               PROGRESS
@@ -353,7 +699,6 @@ export default function Music() {
 
           </div>
 
-
           {/* =================================================
               CONTROLS
           ================================================= */}
@@ -362,8 +707,12 @@ export default function Music() {
 
             <Button
               type="text"
-              icon={<StepBackwardFilled />}
-              onClick={previousPart}
+              icon={
+                <StepBackwardFilled />
+              }
+              onClick={
+                previousPart
+              }
             />
 
             <Button
@@ -377,17 +726,71 @@ export default function Music() {
                   <PlayCircleFilled />
                 )
               }
-              onClick={togglePlay}
+              onClick={
+                togglePlay
+              }
             />
 
             <Button
               type="text"
-              icon={<StepForwardFilled />}
-              onClick={nextPart}
+              icon={
+                <StepForwardFilled />
+              }
+              onClick={
+                nextPart
+              }
             />
 
           </div>
 
+          {/* =================================================
+              SWITCH SONG
+          ================================================= */}
+
+          <div className="jump-section">
+
+            <span className="jump-label">
+              SWITCH SONG
+            </span>
+
+            <Space
+              wrap
+              className="jump-buttons"
+            >
+
+              {songs.map((song) => (
+
+                <Button
+                  key={song.id}
+                  onClick={() => {
+
+                    /*
+                      If a song is currently
+                      playing, changeSong()
+                      automatically continues
+                      playing the new song.
+                    */
+
+                    changeSong(
+                      song.id
+                    );
+
+                  }}
+                  className={
+                    selectedSong.id ===
+                    song.id
+                      ? "jump-button favorite-jump"
+                      : "jump-button"
+                  }
+                >
+                  {song.title}
+                </Button>
+
+              ))}
+
+            </Space>
+
+          </div>
 
           {/* =================================================
               JUMP TO PART
@@ -404,30 +807,40 @@ export default function Music() {
               className="jump-buttons"
             >
 
-              {songParts.map((part) => (
-                <Button
-                  key={part.label}
-                  onClick={() => jumpTo(part.time)}
-                  className={
-                    part.time === 121 && favoriteActive
-                      ? "jump-button favorite-jump"
-                      : "jump-button"
-                  }
-                >
-                  {part.label}
-                </Button>
-              ))}
+              {selectedSong.parts.map(
+                (part) => (
+
+                  <Button
+                    key={part.label}
+                    onClick={() =>
+                      jumpTo(
+                        part.time
+                      )
+                    }
+                    className={
+                      part.time ===
+                        selectedSong.favoriteTime &&
+                      favoriteActive
+                        ? "jump-button favorite-jump"
+                        : "jump-button"
+                    }
+                  >
+                    {part.label}
+                  </Button>
+
+                )
+              )}
 
             </Space>
 
           </div>
-
 
           {/* =================================================
               FAVORITE PART
           ================================================= */}
 
           {favoriteActive && (
+
             <div className="favorite-part">
 
               <div className="favorite-part-title">
@@ -443,6 +856,7 @@ export default function Music() {
               </span>
 
             </div>
+
           )}
 
         </div>

@@ -1,84 +1,103 @@
-import {
-  Card,
-  Tag,
-  Typography,
-} from "antd";
-
-import {
-  DesktopOutlined,
-  MessageOutlined,
-  ThunderboltOutlined,
-} from "@ant-design/icons";
-
-import { profile } from "../data/profile";
-
-const {
-  Title,
-  Paragraph,
-  Text,
-} = Typography;
+import "./About.css";
 
 export default function About() {
   return (
-    <section className="section">
+    <section
+      id="about"
+      className="about-section"
+    >
+      <div className="about-container">
 
-      <Card className="about-card">
+        <div className="about-header">
+          <span className="about-eyebrow">
+            A LITTLE ABOUT ME
+          </span>
 
-        <div className="avatar">
-          {profile.initials}
+          <h2 className="about-title">
+            welcome to the
+            <span> lore.</span>
+          </h2>
         </div>
 
-        <div className="about-info">
+        <div className="about-grid">
 
-          <Tag color="red">
-            {profile.vibe}
-          </Tag>
+          {/* MAIN CARD */}
+          <div className="about-card about-main-card">
 
-          <Title level={2}>
-            {profile.names.join(
-              " / "
-            )}
-          </Title>
+            <div className="about-icon">
+              M
+            </div>
 
-          <Text type="secondary">
-            {profile.tagline}
-          </Text>
+            <div className="about-content">
 
-          <Paragraph>
-            {profile.description}
-          </Paragraph>
+              <h3>
+                so... who am i?
+              </h3>
 
-          <Paragraph>
-            <DesktopOutlined />
-            {" "}
-            {profile.about}
-          </Paragraph>
+              <p>
+                just a person who enjoys gaming,
+                music, anime, random conversations,
+                and making things that probably
+                didn't need to exist.
+              </p>
 
-          <div className="about-tags">
+              <p>
+                this site is basically my little
+                corner of the internet where all
+                the random interests somehow ended
+                up in the same place.
+              </p>
 
-            <Tag
-              icon={
-                <ThunderboltOutlined />
-              }
-            >
-              {profile.personality}
-            </Tag>
+            </div>
 
-            <Tag
-              color="red"
-              icon={
-                <MessageOutlined />
-              }
-            >
-              talk to me
-            </Tag>
+          </div>
+
+          {/* INTERESTS */}
+          <div className="about-card">
+
+            <span className="about-card-label">
+              CURRENTLY INTO
+            </span>
+
+            <div className="about-tags">
+
+              <span>🎮 Gaming</span>
+              <span>🎵 Music</span>
+              <span>🍥 Naruto</span>
+              <span>⚔️ AOT</span>
+              <span>🌀 JJK</span>
+              <span>🦸 MCU</span>
+              <span>🎬 Movies</span>
+              <span>💻 Coding</span>
+
+            </div>
+
+          </div>
+
+          {/* VIBE */}
+          <div className="about-card about-vibe-card">
+
+            <span className="about-card-label">
+              CURRENT STATUS
+            </span>
+
+            <h3>
+              probably doing something
+              unnecessary.
+            </h3>
+
+            <p>
+              if i'm not coding, i'm probably
+              watching something, playing a game,
+              listening to music, or wondering
+              why i opened another tab.
+            </p>
 
           </div>
 
         </div>
 
-      </Card>
-
+      </div>
     </section>
   );
 }

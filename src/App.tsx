@@ -9,7 +9,6 @@ import {
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/About";
 import InteractiveCards from "./components/InteractiveCards";
 import Music from "./components/Music";
 import Games from "./components/Games";
@@ -34,43 +33,18 @@ import "./styles/App.css";
 const { Content, Footer } = Layout;
 
 function App() {
-  /* =====================================
-     USER
-  ===================================== */
+  // =====================================
+  // USER
+  // =====================================
 
   const [username, setUsername] = useState("");
   const [entered, setEntered] = useState(false);
 
-  /* =====================================
-     RANDOM TAGLINE
-  ===================================== */
+  // =====================================
+  // RANDOM TAGLINE
+  // =====================================
 
   const [tagline, setTagline] = useState("");
-
-  /* =====================================
-     THEME
-  ===================================== */
-
-  const [darkMode, setDarkMode] = useState(true);
-
-  /* =====================================
-     MODALS
-  ===================================== */
-
-  const [activeModal, setActiveModal] =
-    useState<string | null>(null);
-
-  /* =====================================
-     EXCLUSIVE
-  ===================================== */
-
-  const [password, setPassword] = useState("");
-  const [exclusiveUnlocked, setExclusiveUnlocked] =
-    useState(false);
-
-  /* =====================================
-     RANDOM TAGLINE FUNCTION
-  ===================================== */
 
   const getRandomTagline = () => {
     if (!randomTaglines.length) {
@@ -84,9 +58,31 @@ function App() {
     return randomTaglines[randomIndex];
   };
 
-  /* =====================================
-     INITIAL LOAD
-  ===================================== */
+  // =====================================
+  // THEME
+  // =====================================
+
+  const [darkMode, setDarkMode] = useState(true);
+
+  // =====================================
+  // MODALS
+  // =====================================
+
+  const [activeModal, setActiveModal] =
+    useState<string | null>(null);
+
+  // =====================================
+  // EXCLUSIVE
+  // =====================================
+
+  const [password, setPassword] = useState("");
+
+  const [exclusiveUnlocked, setExclusiveUnlocked] =
+    useState(false);
+
+  // =====================================
+  // INITIAL LOAD
+  // =====================================
 
   useEffect(() => {
     const savedUsername =
@@ -100,9 +96,9 @@ function App() {
     setTagline(getRandomTagline());
   }, []);
 
-  /* =====================================
-     CHANGE TAGLINE OVER TIME
-  ===================================== */
+  // =====================================
+  // CHANGE TAGLINE OVER TIME
+  // =====================================
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -112,9 +108,9 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  /* =====================================
-     ENTER WEBSITE
-  ===================================== */
+  // =====================================
+  // ENTER WEBSITE
+  // =====================================
 
   const enterWebsite = async () => {
     const cleanUsername = username.trim();
@@ -134,9 +130,9 @@ function App() {
       cleanUsername
     );
 
-    /* =================================
-       SAVE VISITOR
-    ================================= */
+    // ===================================
+    // SAVE VISITOR TO SUPABASE
+    // ===================================
 
     try {
       const { error: visitorError } =
@@ -153,9 +149,9 @@ function App() {
         );
       }
 
-      /* ================================
-         SAVE INTERACTION
-      ================================= */
+      // =================================
+      // SAVE INTERACTION
+      // =================================
 
       const { error: interactionError } =
         await supabase
@@ -188,25 +184,25 @@ function App() {
     );
   };
 
-  /* =====================================
-     CLOSE MODAL
-  ===================================== */
+  // =====================================
+  // CLOSE MODAL
+  // =====================================
 
   const closeModal = () => {
     setActiveModal(null);
   };
 
-  /* =====================================
-     OPEN MINI GAMES
-  ===================================== */
+  // =====================================
+  // OPEN MINI GAMES
+  // =====================================
 
   const openMiniGames = () => {
     setActiveModal("miniGames");
   };
 
-  /* =====================================
-     UNLOCK EXCLUSIVE
-  ===================================== */
+  // =====================================
+  // UNLOCK EXCLUSIVE
+  // =====================================
 
   const unlockExclusive = () => {
     if (
@@ -228,9 +224,9 @@ function App() {
     }
   };
 
-  /* =====================================
-     LOGIN SCREEN
-  ===================================== */
+  // =====================================
+  // LOGIN SCREEN
+  // =====================================
 
   if (!entered) {
     return (
@@ -240,9 +236,11 @@ function App() {
             theme.darkAlgorithm,
 
           token: {
-            colorPrimary: "#ff2020",
+            colorPrimary:
+              "#ff2020",
 
-            colorText: "#ffffff",
+            colorText:
+              "#ffffff",
 
             colorTextHeading:
               "#ffffff",
@@ -337,9 +335,9 @@ function App() {
     );
   }
 
-  /* =====================================
-     MAIN WEBSITE
-  ===================================== */
+  // =====================================
+  // MAIN WEBSITE
+  // =====================================
 
   return (
     <ConfigProvider
@@ -370,7 +368,6 @@ function App() {
         },
       }}
     >
-
       <Layout className="site">
 
         {/* =================================
@@ -392,50 +389,42 @@ function App() {
           <Hero
             username={username}
             tagline={tagline}
-
-            onExplore={() =>
+            onExplore={() => {
               document
                 .getElementById("explore")
                 ?.scrollIntoView({
                   behavior: "smooth",
-                })
-            }
-
-            onMessage={() =>
-              setActiveModal("message")
-            }
+                });
+            }}
+            onMessage={() => {
+              setActiveModal("message");
+            }}
           />
-
-          {/* =================================
-              ABOUT
-          ================================= */}
-
-          <About />
 
           {/* =================================
               EXPLORE MY BRAIN
           ================================= */}
 
           <InteractiveCards
-            onQuiz={() =>
-              setActiveModal("quiz")
-            }
+            onQuiz={() => {
+              setActiveModal("quiz");
+            }}
 
-            onPoll={() =>
-              setActiveModal("poll")
-            }
+            onPoll={() => {
+              setActiveModal("poll");
+            }}
 
             onMiniGames={
               openMiniGames
             }
 
-            onRandom={() =>
-              setActiveModal("random")
-            }
+            onRandom={() => {
+              setActiveModal("random");
+            }}
 
-            onMessage={() =>
-              setActiveModal("message")
-            }
+            onMessage={() => {
+              setActiveModal("message");
+            }}
           />
 
           {/* =================================
@@ -457,7 +446,7 @@ function App() {
           <Anime />
 
           {/* =================================
-              PRIVATE LOG
+              EXCLUSIVE
           ================================= */}
 
           <Exclusive
@@ -487,8 +476,7 @@ function App() {
         ================================= */}
 
         <Footer className="footer">
-          this is so him. • made with
-          chaos ❤️
+          this is so him. • made with chaos ❤️
         </Footer>
 
         {/* =================================
@@ -574,7 +562,6 @@ function App() {
         />
 
       </Layout>
-
     </ConfigProvider>
   );
 }
