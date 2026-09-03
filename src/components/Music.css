@@ -1,380 +1,519 @@
 /* =========================================================
-   MUSIC SECTION — MESEEKS / SPOTIFY THEMED
+   MUSIC SECTION
 ========================================================= */
 
 .music-section {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 40px 90px;
-  box-sizing: border-box;
-  color: #fff;
+  padding: 80px 0;
+  position: relative;
 }
 
-/* =========================================================
-   SECTION HEADER
-========================================================= */
-
 .music-section-heading {
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .section-eyebrow {
   display: block;
-  color: #ff2028;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 4px;
+  color: #ff2b2b;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
   text-transform: uppercase;
-  margin-bottom: 10px;
 }
 
 .music-section-heading h2 {
   margin: 0;
-  color: #fff;
-  font-size: clamp(38px, 5vw, 60px);
+  color: #ffffff;
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 900;
-  letter-spacing: -2px;
-  line-height: 1;
+  letter-spacing: -1.5px;
 }
 
 .music-section-heading p {
-  margin: 14px 0 0;
-  color: #aaa;
+  margin: 10px 0 0;
+  color: #8e8e8e;
   font-size: 15px;
 }
 
+
 /* =========================================================
-   MAIN MUSIC CARD
+   SONG CARDS
 ========================================================= */
+
+.music-card-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
 
 .music-card {
   position: relative;
-  width: 100%;
-  min-height: 155px;
-
   display: flex;
   align-items: center;
+  gap: 20px;
 
-  padding: 22px 24px;
-  box-sizing: border-box;
-
-  gap: 22px;
-
-  border-radius: 18px;
-  border: 1px solid #3a1111;
+  min-height: 150px;
+  padding: 18px;
 
   background:
     linear-gradient(
-      110deg,
-      #260000 0%,
-      #130000 45%,
-      #090909 100%
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
     );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
 
   overflow: hidden;
 
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
+    background 0.25s ease,
     box-shadow 0.25s ease;
 }
 
-.music-card::before {
-  content: "";
-
-  position: absolute;
-
-  width: 320px;
-  height: 320px;
-
-  left: -140px;
-  top: -100px;
-
-  background: rgba(255, 0, 0, 0.13);
-
-  filter: blur(80px);
-
-  pointer-events: none;
-}
-
 .music-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 
-  border-color: #ff2028;
+  border-color: rgba(255, 35, 35, 0.45);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 35, 35, 0.08),
+      rgba(255, 255, 255, 0.025)
+    );
 
   box-shadow:
-    0 20px 55px rgba(255, 0, 0, 0.15);
+    0 15px 35px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(255, 0, 0, 0.06);
 }
 
-/* =========================================================
-   ALBUM IMAGE
-========================================================= */
+.music-card.active-song {
+  border-color: rgba(255, 35, 35, 0.65);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 35, 35, 0.08),
+    0 15px 40px rgba(0, 0, 0, 0.35);
+}
 
 .music-card-image {
-  position: relative;
-  z-index: 1;
-
-  width: 115px;
-  height: 115px;
+  width: 112px;
+  height: 112px;
 
   flex-shrink: 0;
 
   object-fit: cover;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.7);
+    0 10px 25px rgba(0, 0, 0, 0.4);
 
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .music-card:hover .music-card-image {
-  transform: scale(1.03);
-
-  box-shadow:
-    0 15px 40px rgba(255, 0, 0, 0.18);
+  transform: scale(1.04);
+  filter: brightness(1.08);
 }
 
-/* =========================================================
-   SONG INFORMATION
-========================================================= */
-
 .music-card-info {
-  position: relative;
-  z-index: 1;
-
-  flex: 1;
   min-width: 0;
+  padding-right: 48px;
 }
 
 .music-card-label {
   display: block;
 
-  color: #ff2028;
+  margin-bottom: 6px;
+
+  color: #ff3030;
 
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 800;
 
-  letter-spacing: 2.5px;
-
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-
-  margin-bottom: 7px;
 }
 
 .music-card-info h3 {
   margin: 0;
 
-  color: #fff;
+  color: #ffffff;
 
-  font-size: 28px;
-  font-weight: 900;
+  font-size: 21px;
+  font-weight: 800;
 
-  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .music-card-info p {
-  margin: 7px 0 14px;
+  margin: 5px 0 14px;
 
-  color: #999;
+  color: #929292;
 
-  font-size: 14px;
+  font-size: 13px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-/* =========================================================
-   OPEN PLAYER BUTTON
-========================================================= */
 
 .open-player-button {
   display: inline-flex;
-
   align-items: center;
-  gap: 6px;
+  gap: 7px;
 
-  padding: 0;
+  padding: 7px 11px;
 
-  border: none;
-  background: transparent;
+  color: #dcdcdc;
+  background: rgba(255, 255, 255, 0.055);
 
-  color: #ff2028;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
 
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 600;
 
   cursor: pointer;
 
   transition:
+    background 0.2s ease,
     color 0.2s ease,
-    transform 0.2s ease;
+    border-color 0.2s ease;
 }
 
 .open-player-button:hover {
-  color: #fff;
+  color: #ffffff;
 
-  transform: translateX(3px);
+  background: rgba(255, 35, 35, 0.15);
+
+  border-color: rgba(255, 35, 35, 0.4);
 }
 
-/* =========================================================
-   CARD PLAY BUTTON
-========================================================= */
+.card-play-button {
+  position: absolute;
 
-.card-play-button.ant-btn {
-  position: relative;
-  z-index: 2;
+  right: 18px;
+  bottom: 18px;
 
-  width: 54px;
-  height: 54px;
+  width: 42px !important;
+  height: 42px !important;
 
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  border: none;
-
-  background: #ff2028;
+  background: #ff2424 !important;
+  border: none !important;
 
   box-shadow:
-    0 8px 25px rgba(255, 0, 0, 0.3);
+    0 7px 20px rgba(255, 0, 0, 0.25);
 
   transition:
     transform 0.2s ease,
-    background 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.card-play-button.ant-btn:hover {
-  background: #ff353c !important;
-
+.card-play-button:hover {
   transform: scale(1.08);
 
   box-shadow:
-    0 12px 35px rgba(255, 0, 0, 0.45);
+    0 10px 28px rgba(255, 0, 0, 0.38);
 }
+
+
+/* =========================================================
+   RIGHT CLICK CONTEXT MENU
+========================================================= */
+
+.music-context-menu {
+  position: fixed;
+  z-index: 99999;
+
+  width: 245px;
+
+  padding: 8px;
+
+  background: rgba(25, 25, 25, 0.97);
+
+  border: 1px solid rgba(255, 255, 255, 0.11);
+
+  border-radius: 13px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.65),
+    0 0 25px rgba(255, 0, 0, 0.05);
+
+  backdrop-filter: blur(18px);
+
+  animation: contextMenuIn 0.12s ease-out;
+}
+
+@keyframes contextMenuIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.context-menu-song {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 9px;
+}
+
+.context-menu-song img {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 7px;
+}
+
+.context-menu-song div {
+  min-width: 0;
+}
+
+.context-menu-song strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.context-menu-song span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #8a8a8a;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.context-menu-divider {
+  height: 1px;
+
+  margin: 5px 4px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.context-menu-item {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px;
+
+  color: #dddddd;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.context-menu-item:hover {
+  color: #ffffff;
+
+  background: rgba(255, 35, 35, 0.13);
+}
+
+.context-menu-item svg {
+  color: #ff3030;
+}
+
 
 /* =========================================================
    ANT DESIGN MODAL
 ========================================================= */
 
-.music-player-modal .ant-modal-content {
-  padding: 0;
+.old-music-player-modal .ant-modal {
+  max-width: calc(100vw - 30px);
+}
+
+.old-music-player-modal .ant-modal-content {
+  padding: 0 !important;
 
   overflow: hidden;
 
-  border-radius: 18px;
+  background: #151515 !important;
 
-  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.09);
 
-  border: 1px solid #2e1010;
+  border-radius: 20px !important;
 
   box-shadow:
-    0 30px 100px rgba(0, 0, 0, 0.85);
+    0 35px 90px rgba(0, 0, 0, 0.75),
+    0 0 50px rgba(255, 0, 0, 0.04);
 }
 
-.music-player-modal .ant-modal-close {
-  top: 16px;
-  right: 16px;
-
-  color: #aaa;
+.old-music-player-modal .ant-modal-close {
+  top: 17px;
+  right: 17px;
 
   z-index: 20;
+
+  color: #858585;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
-.music-player-modal .ant-modal-close:hover {
-  color: #fff;
+.old-music-player-modal .ant-modal-close:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.07);
 }
+
+.old-music-player-modal .ant-modal-body {
+  padding: 0 !important;
+}
+
 
 /* =========================================================
    MAIN PLAYER
 ========================================================= */
 
-.spotify-player {
+.old-music-player {
   position: relative;
 
   width: 100%;
 
-  min-height: 600px;
+  padding: 26px 28px 28px;
 
-  padding: 34px;
-
-  box-sizing: border-box;
+  color: #ffffff;
 
   background:
     radial-gradient(
-      circle at 25% 20%,
-      rgba(255, 0, 0, 0.18),
+      circle at 50% -15%,
+      rgba(255, 35, 35, 0.10),
       transparent 35%
     ),
-    linear-gradient(
-      135deg,
-      #260000 0%,
-      #171111 45%,
-      #090909 100%
-    );
-
-  color: #fff;
+    #151515;
 }
+
 
 /* =========================================================
-   PLAYER TOP
+   PLAYER HEADER
 ========================================================= */
 
-.spotify-top {
+.old-player-header {
   display: flex;
-
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
 
-  gap: 25px;
+  gap: 20px;
 
-  margin-bottom: 28px;
+  margin-bottom: 18px;
+
+  padding-right: 45px;
 }
 
-.spotify-song-title span {
-  color: #ff2028;
+.old-player-eyebrow {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #ff3030;
 
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 800;
 
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
+  letter-spacing: 2.2px;
 }
 
-.spotify-song-title h1 {
-  margin: 7px 0 4px;
-
-  color: #fff;
-
-  font-size: 32px;
-  font-weight: 900;
-
-  line-height: 1.05;
-}
-
-.spotify-song-title p {
+.old-player-header h1 {
   margin: 0;
 
-  color: #aaa;
+  color: #ffffff;
 
-  font-size: 14px;
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 900;
+
+  line-height: 1.08;
+
+  letter-spacing: -1px;
 }
 
+.old-player-header p {
+  margin: 7px 0 0;
+
+  color: #999999;
+
+  font-size: 13px;
+}
+
+
 /* =========================================================
-   MESEEKS MODE BUTTON
+   QUEUE BUTTON
 ========================================================= */
 
-.switch-button.ant-btn {
-  border: 1px solid #3d3d3d;
+.player-queue-button {
+  flex-shrink: 0;
 
-  border-radius: 22px;
+  display: flex !important;
+  align-items: center;
 
-  background: #181818;
+  gap: 7px;
 
-  color: #ddd;
+  height: 38px !important;
 
-  font-weight: 700;
+  padding: 0 14px !important;
+
+  color: #d8d8d8 !important;
+
+  background: rgba(255, 255, 255, 0.045) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+
+  border-radius: 9px !important;
+
+  box-shadow: none !important;
 
   transition:
     background 0.2s ease,
@@ -382,499 +521,846 @@
     color 0.2s ease;
 }
 
-.switch-button.ant-btn:hover {
-  background: #250000 !important;
+.player-queue-button:hover,
+.player-queue-button.active {
+  color: #ffffff !important;
 
-  border-color: #ff2028 !important;
+  background: rgba(255, 35, 35, 0.13) !important;
 
-  color: #fff !important;
+  border-color: rgba(255, 35, 35, 0.45) !important;
 }
+
 
 /* =========================================================
-   ALBUM AREA
+   ALBUM ART
 ========================================================= */
 
-.spotify-album-wrapper {
+.old-player-art-wrapper {
+  width: 100%;
+
   display: flex;
-
   justify-content: center;
-  align-items: center;
 
-  margin: 15px 0 25px;
+  margin: 2px 0 20px;
 }
 
-.spotify-album {
-  width: min(330px, 75vw);
-  height: min(330px, 75vw);
+.old-player-art {
+  display: block;
+
+  width: min(390px, 58vw);
+  height: min(390px, 58vw);
 
   object-fit: cover;
 
-  border-radius: 10px;
+  border-radius: 13px;
 
   box-shadow:
-    0 25px 55px rgba(0, 0, 0, 0.7);
+    0 22px 50px rgba(0, 0, 0, 0.58),
+    0 0 35px rgba(255, 0, 0, 0.035);
 
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.spotify-album:hover {
-  transform: scale(1.015);
+.old-player-art:hover {
+  transform: scale(1.008);
 
   box-shadow:
-    0 25px 65px rgba(255, 0, 0, 0.18);
+    0 25px 60px rgba(0, 0, 0, 0.65),
+    0 0 45px rgba(255, 0, 0, 0.06);
 }
 
+
 /* =========================================================
-   SONG INFO
+   SONG INFORMATION
 ========================================================= */
 
-.spotify-song-info {
+.old-player-song-info {
   display: flex;
-
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   gap: 20px;
 
-  margin-top: 25px;
+  margin-bottom: 7px;
 }
 
-.spotify-song-info h2 {
+.old-player-song-info h2 {
   margin: 0;
 
-  color: #fff;
+  color: #ffffff;
 
-  font-size: 22px;
-  font-weight: 900;
+  font-size: 21px;
+  font-weight: 800;
+
+  letter-spacing: -0.3px;
 }
 
-.spotify-song-info p {
-  margin: 5px 0 0;
+.old-player-song-info p {
+  margin: 3px 0 0;
 
-  color: #999;
+  color: #888888;
 
-  font-size: 14px;
+  font-size: 13px;
 }
 
-.favorite-star {
-  color: #ff2028;
+.old-player-star {
+  flex-shrink: 0;
 
-  font-size: 20px;
+  color: #444444;
 
-  cursor: pointer;
+  font-size: 19px;
 
   transition:
-    transform 0.2s ease,
-    color 0.2s ease;
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
-.favorite-star:hover {
-  color: #fff;
+.old-player-star.active {
+  color: #ff3030;
 
-  transform: scale(1.15);
+  transform: scale(1.12);
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(255, 30, 30, 0.45)
+    );
 }
+
 
 /* =========================================================
    PROGRESS
 ========================================================= */
 
-.spotify-progress {
+.old-player-progress {
   display: grid;
 
   grid-template-columns: 40px 1fr 40px;
 
   align-items: center;
 
-  gap: 12px;
+  gap: 9px;
 
-  margin-top: 25px;
+  margin-top: 2px;
 }
 
-.spotify-progress .ant-typography {
-  color: #999;
+.old-player-progress > span {
+  color: #777777;
 
   font-size: 11px;
+
+  font-variant-numeric: tabular-nums;
 }
 
-.spotify-progress .ant-progress {
-  width: 100%;
+.old-player-progress > span:last-child {
+  text-align: right;
 }
 
-.spotify-progress .ant-progress-inner {
-  background: #3a3a3a;
-
-  border-radius: 10px;
+.old-player-slider {
+  min-width: 0;
 }
 
-.spotify-progress .ant-progress-bg {
-  background: #ff2028 !important;
-
-  height: 5px !important;
-
-  border-radius: 10px;
+.old-player-slider .ant-slider {
+  margin: 8px 0;
 }
+
+.old-player-slider .ant-slider-rail {
+  height: 4px;
+
+  background: #333333 !important;
+
+  border-radius: 99px;
+}
+
+.old-player-slider .ant-slider-track {
+  height: 4px;
+
+  background: #ff3030 !important;
+
+  border-radius: 99px;
+}
+
+.old-player-slider .ant-slider-handle::after {
+  width: 10px;
+  height: 10px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 2px #ff3030;
+}
+
 
 /* =========================================================
-   PLAYER CONTROLS
+   MAIN CONTROLS
 ========================================================= */
 
-.spotify-controls {
+.old-player-controls {
   display: flex;
-
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  gap: 25px;
+  gap: 19px;
 
-  margin-top: 25px;
+  margin: 2px 0 22px;
 }
 
-.spotify-controls .ant-btn {
-  width: 42px;
-  height: 42px;
+.old-player-controls .ant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  color: #c7c7c7;
 
   border: none;
 
-  color: #aaa;
-
   background: transparent;
 
-  font-size: 19px;
+  box-shadow: none;
 
   transition:
     color 0.2s ease,
     transform 0.2s ease;
 }
 
-.spotify-controls .ant-btn:hover {
-  color: #fff !important;
-
-  background: transparent !important;
+.old-player-controls .ant-btn:hover {
+  color: #ffffff;
 
   transform: scale(1.12);
 }
 
-/* =========================================================
-   MAIN PLAY BUTTON
-========================================================= */
+.old-player-controls .ant-btn svg {
+  font-size: 17px;
+}
 
-.spotify-main-play.ant-btn {
-  width: 58px;
-  height: 58px;
+.old-player-controls .old-main-play {
+  width: 52px;
+  height: 52px;
 
-  border: none;
+  color: #ffffff !important;
 
-  background: #fff;
+  background: #ff2b2b !important;
 
-  color: #111;
-
-  font-size: 22px;
+  border: none !important;
 
   box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.45);
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+    0 8px 25px rgba(255, 0, 0, 0.30);
 }
 
-.spotify-main-play.ant-btn:hover {
-  background: #fff !important;
+.old-player-controls .old-main-play:hover {
+  color: #ffffff !important;
 
-  color: #111 !important;
+  background: #ff3b3b !important;
 
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
+
+.old-player-controls .old-main-play svg {
+  font-size: 26px;
+}
+
 
 /* =========================================================
-   JUMP TO PART
+   PLAYER SECTIONS
 ========================================================= */
 
-.jump-section {
-  margin-top: 32px;
+.old-player-section {
+  margin-top: 18px;
 
-  padding-top: 22px;
+  padding-top: 17px;
 
-  border-top: 1px solid #292929;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.jump-label {
+.old-player-section-title {
   display: block;
 
-  margin-bottom: 12px;
+  margin-bottom: 9px;
 
-  color: #888;
+  color: #ff3030;
 
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 800;
 
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
 
   text-transform: uppercase;
 }
 
-.jump-buttons {
-  display: flex;
+.old-player-buttons {
+  display: flex !important;
 
-  flex-wrap: wrap;
-
-  gap: 9px;
+  width: 100%;
 }
 
-.jump-button.ant-btn {
-  height: 34px;
+.old-player-buttons .ant-space-item {
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+}
 
-  padding: 0 15px;
+.old-jump-button {
+  height: 32px !important;
 
-  border-radius: 20px;
+  padding: 0 12px !important;
 
-  border: 1px solid #3a3a3a;
+  color: #bdbdbd !important;
 
-  background: #181818;
+  background: rgba(255, 255, 255, 0.035) !important;
 
-  color: #aaa;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
 
-  font-size: 11px;
-  font-weight: 800;
+  border-radius: 8px !important;
+
+  font-size: 11px !important;
 
   transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+    color 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
 }
 
-.jump-button.ant-btn:hover {
-  background: #250000 !important;
+.old-jump-button:hover {
+  color: #ffffff !important;
 
-  border-color: #ff2028 !important;
+  background: rgba(255, 35, 35, 0.11) !important;
 
-  color: #fff !important;
+  border-color: rgba(255, 35, 35, 0.38) !important;
 
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
+
+.old-jump-button.selected {
+  color: #ffffff !important;
+
+  background: rgba(255, 35, 35, 0.15) !important;
+
+  border-color: rgba(255, 35, 35, 0.65) !important;
+
+  box-shadow:
+    0 0 15px rgba(255, 0, 0, 0.06);
+}
+
+.old-jump-button.favorite {
+  color: #ffffff !important;
+
+  background: rgba(255, 35, 35, 0.25) !important;
+
+  border-color: #ff3030 !important;
+}
+
 
 /* =========================================================
-   FAVORITE JUMP BUTTON
+   -10 / +10
 ========================================================= */
 
-.favorite-jump.ant-btn {
-  color: #ff2028;
+.old-ten-second-controls {
+  display: flex;
 
-  border-color: #ff2028;
+  gap: 8px;
 
-  background: #200000;
+  margin-top: 10px;
 }
 
-.favorite-jump.ant-btn:hover {
-  background: #ff2028 !important;
+.old-ten-second-controls .ant-btn {
+  height: 29px;
 
-  color: #fff !important;
+  padding: 0 12px;
+
+  color: #999999;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 7px;
+
+  font-size: 11px;
 }
+
+.old-ten-second-controls .ant-btn:hover {
+  color: #ffffff;
+
+  border-color: rgba(255, 35, 35, 0.4);
+
+  background: rgba(255, 35, 35, 0.09);
+}
+
 
 /* =========================================================
-   FAVORITE PART MESSAGE
+   QUEUE PANEL
 ========================================================= */
 
-.favorite-part {
-  width: fit-content;
+.old-player-queue {
+  margin-top: 18px;
 
-  margin: 25px auto 0;
-
-  padding: 13px 22px;
-
-  text-align: center;
-
-  border-radius: 18px;
-
-  border: 1px solid #451010;
+  padding: 17px;
 
   background:
     linear-gradient(
-      135deg,
-      rgba(255, 0, 0, 0.12),
-      rgba(255, 0, 0, 0.03)
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
     );
 
-  box-shadow:
-    0 10px 30px rgba(255, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 13px;
+
+  animation: queueOpen 0.2s ease-out;
 }
 
-.favorite-part-title {
-  color: #ff2028;
+@keyframes queueOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
 
-  font-size: 13px;
-
-  font-weight: 900;
-
-  letter-spacing: 1px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.favorite-part-emojis {
-  margin-top: 6px;
+.queue-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 12px;
+}
+
+.queue-title-row .old-player-section-title {
+  margin-bottom: 3px;
+}
+
+.queue-title-row h3 {
+  margin: 0;
+
+  color: #ffffff;
 
   font-size: 18px;
-
-  letter-spacing: 3px;
+  font-weight: 800;
 }
 
-.favorite-part span {
-  display: block;
+.queue-title-row .ant-btn {
+  border-radius: 7px;
+}
 
-  margin-top: 5px;
 
-  color: #888;
+/* =========================================================
+   EMPTY QUEUE
+========================================================= */
+
+.queue-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 130px;
+
+  gap: 6px;
+
+  color: #666666;
+
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+
+  border-radius: 10px;
+}
+
+.queue-empty > svg {
+  margin-bottom: 3px;
+
+  color: #ff3030;
+
+  font-size: 20px;
+}
+
+.queue-empty span {
+  color: #999999;
+
+  font-size: 13px;
+}
+
+.queue-empty small {
+  color: #5f5f5f;
 
   font-size: 11px;
 }
 
+
 /* =========================================================
-   RESPONSIVE — TABLET
+   QUEUE LIST
 ========================================================= */
 
-@media (max-width: 800px) {
-  .music-section {
-    padding: 90px 22px 70px;
+.queue-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  max-height: 260px;
+
+  overflow-y: auto;
+
+  padding-right: 3px;
+}
+
+.queue-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.queue-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.queue-list::-webkit-scrollbar-thumb {
+  background: #383838;
+
+  border-radius: 99px;
+}
+
+.queue-list::-webkit-scrollbar-thumb:hover {
+  background: #ff3030;
+}
+
+.queue-row {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 8px;
+
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  transition:
+    background 0.18s ease;
+}
+
+.queue-row:hover {
+  background: rgba(255, 35, 35, 0.08);
+}
+
+.queue-number {
+  width: 18px;
+
+  flex-shrink: 0;
+
+  color: #626262;
+
+  font-size: 10px;
+
+  text-align: center;
+}
+
+.queue-row img {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+}
+
+.queue-row-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.queue-row-info strong {
+  display: block;
+
+  color: #eeeeee;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.queue-row-info span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #737373;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.queue-row-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 0;
+
+  flex-shrink: 0;
+}
+
+.queue-row-actions .ant-btn {
+  width: 26px;
+  height: 26px;
+
+  padding: 0;
+
+  color: #777777;
+
+  border: none;
+
+  background: transparent;
+
+  box-shadow: none;
+}
+
+.queue-row-actions .ant-btn:hover:not(:disabled) {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.queue-row-actions .ant-btn-dangerous:hover:not(:disabled) {
+  color: #ff3b3b !important;
+
+  background: rgba(255, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   FAVORITE MESSAGE
+========================================================= */
+
+.old-favorite-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 18px;
+
+  padding: 10px 15px;
+
+  color: #ff5a5a;
+
+  background: rgba(255, 35, 35, 0.08);
+
+  border: 1px solid rgba(255, 35, 35, 0.16);
+
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  animation:
+    favoritePop 0.25s ease-out,
+    favoriteGlow 1.5s ease-in-out infinite alternate;
+}
+
+.old-favorite-message svg {
+  color: #ff3030;
+}
+
+@keyframes favoritePop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
   }
 
-  .music-card {
-    min-height: 135px;
-
-    padding: 17px;
-
-    gap: 16px;
-  }
-
-  .music-card-image {
-    width: 90px;
-    height: 90px;
-  }
-
-  .music-card-info h3 {
-    font-size: 21px;
-  }
-
-  .music-card-info p {
-    margin-bottom: 9px;
-  }
-
-  .card-play-button.ant-btn {
-    width: 46px;
-    height: 46px;
-  }
-
-  .spotify-player {
-    padding: 28px 24px;
-  }
-
-  .spotify-top {
-    flex-direction: column;
-
-    align-items: flex-start;
-  }
-
-  .spotify-song-title h1 {
-    font-size: 27px;
-  }
-
-  .spotify-album {
-    width: 280px;
-    height: 280px;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-/* =========================================================
-   RESPONSIVE — MOBILE
-========================================================= */
-
-@media (max-width: 500px) {
-  .music-section {
-    padding: 80px 16px 60px;
+@keyframes favoriteGlow {
+  from {
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0);
   }
 
-  .music-section-heading h2 {
-    font-size: 38px;
+  to {
+    box-shadow: 0 0 22px rgba(255, 0, 0, 0.08);
+  }
+}
+
+
+/* =========================================================
+   MODAL BACKDROP
+========================================================= */
+
+.old-music-player-modal + .ant-modal-mask {
+  background: rgba(0, 0, 0, 0.78) !important;
+
+  backdrop-filter: blur(5px);
+}
+
+
+/* =========================================================
+   ANT DESIGN MESSAGE
+========================================================= */
+
+.ant-message-notice-content {
+  background: #202020 !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+
+  border-radius: 9px !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+  .music-card-list {
+    grid-template-columns: 1fr;
+  }
+
+  .old-player-art {
+    width: min(360px, 65vw);
+    height: min(360px, 65vw);
+  }
+}
+
+@media (max-width: 650px) {
+  .music-section {
+    padding: 60px 0;
   }
 
   .music-card {
-    padding: 14px;
+    min-height: 125px;
 
-    gap: 12px;
+    gap: 13px;
 
-    border-radius: 14px;
+    padding: 13px;
   }
 
   .music-card-image {
-    width: 72px;
-    height: 72px;
+    width: 85px;
+    height: 85px;
+  }
+
+  .music-card-info {
+    padding-right: 42px;
   }
 
   .music-card-info h3 {
-    font-size: 18px;
-  }
-
-  .music-card-info p {
-    font-size: 12px;
-
-    margin: 5px 0 8px;
-  }
-
-  .music-card-label {
-    font-size: 8px;
-
-    letter-spacing: 1.8px;
+    font-size: 17px;
   }
 
   .open-player-button {
-    font-size: 11px;
+    font-size: 10px;
   }
 
-  .card-play-button.ant-btn {
-    width: 40px;
-    height: 40px;
+  .card-play-button {
+    right: 13px;
+    bottom: 13px;
+
+    width: 36px !important;
+    height: 36px !important;
   }
 
-  .spotify-player {
-    padding: 22px 16px;
+  .old-music-player {
+    padding: 21px 18px 22px;
   }
 
-  .spotify-song-title h1 {
-    font-size: 24px;
+  .old-player-header {
+    margin-bottom: 13px;
   }
 
-  .spotify-album {
-    width: 220px;
-    height: 220px;
+  .old-player-header h1 {
+    font-size: 25px;
   }
 
-  .spotify-song-info h2 {
+  .old-player-art {
+    width: min(320px, 72vw);
+    height: min(320px, 72vw);
+
+    border-radius: 10px;
+  }
+
+  .old-player-song-info h2 {
     font-size: 18px;
   }
 
-  .spotify-progress {
-    grid-template-columns: 35px 1fr 35px;
-
-    gap: 7px;
+  .old-player-progress {
+    grid-template-columns: 34px 1fr 34px;
   }
 
-  .spotify-controls {
-    gap: 12px;
+  .old-player-controls {
+    margin-bottom: 17px;
   }
 
-  .spotify-main-play.ant-btn {
-    width: 52px;
-    height: 52px;
+  .old-jump-button {
+    font-size: 10px !important;
+
+    padding: 0 9px !important;
   }
 
-  .jump-buttons {
-    gap: 6px;
+  .queue-row-actions .ant-btn {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 430px) {
+  .old-player-header {
+    flex-direction: column;
   }
 
-  .jump-button.ant-btn {
-    padding: 0 11px;
+  .player-queue-button {
+    align-self: flex-start;
+  }
 
-    font-size: 10px;
+  .old-player-art {
+    width: 260px;
+    height: 260px;
+  }
+
+  .old-player-header {
+    padding-right: 35px;
+  }
+
+  .old-player-header h1 {
+    font-size: 23px;
+  }
+
+  .old-player-song-info h2 {
+    font-size: 16px;
+  }
+
+  .queue-row-actions {
+    display: none;
   }
 }

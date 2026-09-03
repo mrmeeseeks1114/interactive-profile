@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import InteractiveCards from "./components/InteractiveCards";
 import Music from "./components/Music";
+import Artists from "./components/Artists";
 import Games from "./components/Games";
 import Anime from "./components/Anime";
 import Exclusive from "./components/Exclusive";
@@ -37,14 +38,18 @@ function App() {
   // USER
   // =====================================
 
-  const [username, setUsername] = useState("");
-  const [entered, setEntered] = useState(false);
+  const [username, setUsername] =
+    useState("");
+
+  const [entered, setEntered] =
+    useState(false);
 
   // =====================================
   // RANDOM TAGLINE
   // =====================================
 
-  const [tagline, setTagline] = useState("");
+  const [tagline, setTagline] =
+    useState("");
 
   const getRandomTagline = () => {
     if (!randomTaglines.length) {
@@ -52,7 +57,8 @@ function App() {
     }
 
     const randomIndex = Math.floor(
-      Math.random() * randomTaglines.length
+      Math.random() *
+        randomTaglines.length
     );
 
     return randomTaglines[randomIndex];
@@ -62,7 +68,8 @@ function App() {
   // THEME
   // =====================================
 
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] =
+    useState(true);
 
   // =====================================
   // MODALS
@@ -75,10 +82,33 @@ function App() {
   // EXCLUSIVE
   // =====================================
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] =
+    useState("");
 
-  const [exclusiveUnlocked, setExclusiveUnlocked] =
-    useState(false);
+  const [
+    exclusiveUnlocked,
+    setExclusiveUnlocked,
+  ] = useState(false);
+
+  // =====================================
+  // MUSIC REQUEST
+  // =====================================
+  //
+  // This allows the Artists section
+  // to tell the Music player:
+  //
+  // "play this exact song"
+  //
+  // requestId makes sure clicking the
+  // same song again still triggers it.
+  // =====================================
+
+  const [musicRequest, setMusicRequest] =
+    useState<{
+      songId: string;
+      autoplay: boolean;
+      requestId: number;
+    } | null>(null);
 
   // =====================================
   // INITIAL LOAD
@@ -86,7 +116,9 @@ function App() {
 
   useEffect(() => {
     const savedUsername =
-      sessionStorage.getItem("visitorUsername");
+      sessionStorage.getItem(
+        "visitorUsername"
+      );
 
     if (savedUsername) {
       setUsername(savedUsername);
@@ -105,7 +137,8 @@ function App() {
       setTagline(getRandomTagline());
     }, 4000);
 
-    return () => clearInterval(interval);
+    return () =>
+      clearInterval(interval);
   }, []);
 
   // =====================================
@@ -113,7 +146,8 @@ function App() {
   // =====================================
 
   const enterWebsite = async () => {
-    const cleanUsername = username.trim();
+    const cleanUsername =
+      username.trim();
 
     if (!cleanUsername) {
       message.warning(
@@ -153,15 +187,16 @@ function App() {
       // SAVE INTERACTION
       // =================================
 
-      const { error: interactionError } =
-        await supabase
-          .from("interactions")
-          .insert({
-            username: cleanUsername,
-            type: "Entered Website",
-            details:
-              "Visitor entered the site",
-          });
+      const {
+        error: interactionError,
+      } = await supabase
+        .from("interactions")
+        .insert({
+          username: cleanUsername,
+          type: "Entered Website",
+          details:
+            "Visitor entered the site",
+        });
 
       if (interactionError) {
         console.error(
@@ -225,6 +260,21 @@ function App() {
   };
 
   // =====================================
+  // PLAY SONG FROM ARTISTS
+  // =====================================
+
+  const playArtistSong = (
+    songId: string
+  ) => {
+    setMusicRequest((previous) => ({
+      songId,
+      autoplay: true,
+      requestId:
+        (previous?.requestId ?? 0) + 1,
+    }));
+  };
+
+  // =====================================
   // LOGIN SCREEN
   // =====================================
 
@@ -253,13 +303,11 @@ function App() {
         }}
       >
         <div className="login-page">
-
           <div className="login-glow glow-one" />
 
           <div className="login-glow glow-two" />
 
           <div className="login-box">
-
             <div className="login-logo">
               M
             </div>
@@ -275,11 +323,11 @@ function App() {
 
             <p className="login-description">
               random stuff, gaming,
-              music, anime, MCU & chaos.
+              music, anime, MCU &
+              chaos.
             </p>
 
             <div className="username-wrapper">
-
               <span className="username-symbol">
                 @
               </span>
@@ -296,13 +344,13 @@ function App() {
                 }
                 onKeyDown={(event) => {
                   if (
-                    event.key === "Enter"
+                    event.key ===
+                    "Enter"
                   ) {
                     enterWebsite();
                   }
                 }}
               />
-
             </div>
 
             <button
@@ -311,9 +359,7 @@ function App() {
             >
               ENTER
 
-              <span>
-                →
-              </span>
+              <span>→</span>
             </button>
 
             <span className="login-note">
@@ -321,15 +367,11 @@ function App() {
             </span>
 
             <div className="login-decoration">
-
               <span />
               <span />
               <span />
-
             </div>
-
           </div>
-
         </div>
       </ConfigProvider>
     );
@@ -342,10 +384,9 @@ function App() {
   return (
     <ConfigProvider
       theme={{
-        algorithm:
-          darkMode
-            ? theme.darkAlgorithm
-            : theme.defaultAlgorithm,
+        algorithm: darkMode
+          ? theme.darkAlgorithm
+          : theme.defaultAlgorithm,
 
         token: {
           colorPrimary:
@@ -354,22 +395,19 @@ function App() {
           colorError:
             "#ff2020",
 
-          colorText:
-            darkMode
-              ? "#ffffff"
-              : "#111111",
+          colorText: darkMode
+            ? "#ffffff"
+            : "#111111",
 
-          colorTextHeading:
-            darkMode
-              ? "#ffffff"
-              : "#111111",
+          colorTextHeading: darkMode
+            ? "#ffffff"
+            : "#111111",
 
           borderRadius: 12,
         },
       }}
     >
       <Layout className="site">
-
         {/* =================================
             NAVBAR
         ================================= */}
@@ -381,7 +419,6 @@ function App() {
         />
 
         <Content>
-
           {/* =================================
               HERO
           ================================= */}
@@ -409,19 +446,15 @@ function App() {
             onQuiz={() => {
               setActiveModal("quiz");
             }}
-
             onPoll={() => {
               setActiveModal("poll");
             }}
-
             onMiniGames={
               openMiniGames
             }
-
             onRandom={() => {
               setActiveModal("random");
             }}
-
             onMessage={() => {
               setActiveModal("message");
             }}
@@ -431,7 +464,21 @@ function App() {
               MUSIC
           ================================= */}
 
-          <Music />
+          <Music
+            musicRequest={
+              musicRequest
+            }
+          />
+
+          {/* =================================
+              ARTISTS
+          ================================= */}
+
+          <Artists
+            onPlaySong={
+              playArtistSong
+            }
+          />
 
           {/* =================================
               GAMES
@@ -453,22 +500,15 @@ function App() {
             unlocked={
               exclusiveUnlocked
             }
-
-            password={
-              password
-            }
-
+            password={password}
             setPassword={
               setPassword
             }
-
             onUnlock={
               unlockExclusive
             }
-
             onOpen={() => {}}
           />
-
         </Content>
 
         {/* =================================
@@ -476,7 +516,8 @@ function App() {
         ================================= */}
 
         <Footer className="footer">
-          this is so him. • made with chaos ❤️
+          this is so him. • made with
+          chaos ❤️
         </Footer>
 
         {/* =================================
@@ -487,14 +528,8 @@ function App() {
           open={
             activeModal === "message"
           }
-
-          onClose={
-            closeModal
-          }
-
-          username={
-            username
-          }
+          onClose={closeModal}
+          username={username}
         />
 
         {/* =================================
@@ -505,14 +540,8 @@ function App() {
           open={
             activeModal === "quiz"
           }
-
-          onClose={
-            closeModal
-          }
-
-          username={
-            username
-          }
+          onClose={closeModal}
+          username={username}
         />
 
         {/* =================================
@@ -523,10 +552,7 @@ function App() {
           open={
             activeModal === "poll"
           }
-
-          onClose={
-            closeModal
-          }
+          onClose={closeModal}
         />
 
         {/* =================================
@@ -535,16 +561,11 @@ function App() {
 
         <MiniGames
           open={
-            activeModal === "miniGames"
+            activeModal ===
+            "miniGames"
           }
-
-          onClose={
-            closeModal
-          }
-
-          username={
-            username
-          }
+          onClose={closeModal}
+          username={username}
         />
 
         {/* =================================
@@ -555,12 +576,8 @@ function App() {
           open={
             activeModal === "random"
           }
-
-          onClose={
-            closeModal
-          }
+          onClose={closeModal}
         />
-
       </Layout>
     </ConfigProvider>
   );
