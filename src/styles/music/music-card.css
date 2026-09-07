@@ -1,0 +1,309 @@
+/* =========================================================
+   MAIN MUSIC CARDS
+   ========================================================= */
+
+.music-card-list {
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.012)
+    );
+  box-shadow:
+    0 25px 80px
+    rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.music-card {
+  position: relative;
+  width: 100%;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border-radius: 13px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.music-card + .music-card {
+  margin-top: 2px;
+}
+
+.music-card:hover {
+  background:
+    rgba(255, 255, 255, 0.055);
+}
+
+.music-card.is-playing {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 49, 49, 0.13),
+      rgba(255, 49, 49, 0.035)
+    );
+}
+
+.music-card.is-playing::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  bottom: 13px;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: #ff3131;
+  box-shadow:
+    0 0 14px
+    rgba(255, 49, 49, 0.65);
+}
+
+/* =========================================================
+   MAIN CARD ART
+   ========================================================= */
+
+.music-card-art {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 9px;
+  background: #141414;
+  box-shadow:
+    0 6px 20px
+    rgba(0, 0, 0, 0.35);
+}
+
+.music-card-art img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+  transition:
+    transform 0.35s ease,
+    filter 0.25s ease;
+}
+
+.music-card:hover .music-card-art img {
+  transform: scale(1.06);
+}
+
+.music-card.is-playing .music-card-art img {
+  filter: brightness(0.62);
+}
+
+.music-card-art-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(
+      145deg,
+      #202020,
+      #0d0d0d
+    );
+  color: #ff3131;
+  font-size: 21px;
+}
+
+/* =========================================================
+   MAIN CARD PLAY BUTTON
+   ========================================================= */
+
+.music-card-art-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background:
+    rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  font-size: 22px;
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    background 0.2s ease;
+}
+
+.music-card:hover .music-card-art-play,
+.music-card.is-playing .music-card-art-play {
+  opacity: 1;
+}
+
+.music-card-art-play:hover {
+  background:
+    rgba(0, 0, 0, 0.58);
+  color: #ff3131;
+}
+
+.music-card-art-play.playing {
+  opacity: 1;
+}
+
+/* =========================================================
+   MAIN CARD INFO
+   ========================================================= */
+
+.music-card-info {
+  min-width: 0;
+  flex: 1;
+  padding: 0 18px;
+}
+
+.music-card-title {
+  overflow: hidden;
+  color: #e9e9eb;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.music-card-title.active {
+  color: #ff4a4a;
+}
+
+.music-card:hover .music-card-title {
+  color: #ffffff;
+}
+
+.music-card-artist {
+  margin-top: 4px;
+  overflow: hidden;
+  color: #696970;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.music-card:hover .music-card-artist {
+  color: #9b9ba1;
+}
+
+/* =========================================================
+   PLAYING BARS
+   ========================================================= */
+
+.music-card-status {
+  width: 32px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.music-card-status span {
+  width: 3px;
+  border-radius: 999px;
+  background: #ff3131;
+  animation:
+    music-card-bars
+    0.8s ease-in-out
+    infinite alternate;
+}
+
+.music-card-status span:nth-child(1) {
+  height: 9px;
+  animation-delay: -0.25s;
+}
+
+.music-card-status span:nth-child(2) {
+  height: 17px;
+  animation-delay: -0.5s;
+}
+
+.music-card-status span:nth-child(3) {
+  height: 12px;
+  animation-delay: -0.7s;
+}
+
+/* =========================================================
+   MAIN CARD ACTIONS
+   ========================================================= */
+
+.music-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+  opacity: 0;
+  transform: translateX(5px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.music-card:hover .music-card-actions,
+.music-card.is-playing .music-card-actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.music-card-action {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  background:
+    rgba(255, 255, 255, 0.035);
+  color: #85858c;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    color 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.music-card-action:hover {
+  color: #ffffff;
+  background:
+    rgba(255, 49, 49, 0.12);
+  border-color:
+    rgba(255, 49, 49, 0.35);
+  transform:
+    translateY(-1px);
+}
+
+.music-card-action:first-child {
+  color: #c7c7cb;
+}
+
+.music-card-action:first-child:hover {
+  color: #ff3131;
+}

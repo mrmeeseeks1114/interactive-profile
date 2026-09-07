@@ -1,0 +1,25 @@
+:root {
+  --music-red: #ff3131;
+  --music-red-light: #ff4a4a;
+
+  --music-black: #050505;
+  --music-dark: #090909;
+  --music-panel: #101010;
+  --music-panel-light: #141414;
+
+  --music-white: #ffffff;
+  --music-text: #e9e9eb;
+  --music-muted: #77777f;
+  --music-muted-dark: #66666d;
+  --music-gray: #3a3a3a;
+
+  --music-border: rgba(255, 255, 255, 0.07);
+  --music-border-light: rgba(255, 255, 255, 0.08);
+
+  --music-radius-sm: 8px;
+  --music-radius-md: 13px;
+  --music-radius-lg: 20px;
+  --music-radius-xl: 22px;
+
+  --music-transition: 0.2s ease;
+}

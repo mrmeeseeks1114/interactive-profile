@@ -1,0 +1,438 @@
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .music-section {
+    padding:
+      85px 0 125px;
+  }
+
+  .music-container {
+    width:
+      min(
+        calc(100% - 30px),
+        700px
+      );
+  }
+
+  .music-section-heading {
+    align-items:
+      flex-start;
+  }
+
+  .music-heading-decoration {
+    display: none;
+  }
+
+  .music-card {
+    min-height: 72px;
+  }
+
+  .music-card-art {
+    width: 52px;
+    height: 52px;
+  }
+
+  .music-card-status {
+    display: none;
+  }
+
+  .music-card-actions {
+    opacity: 1;
+    transform: none;
+  }
+
+  .music-card-action {
+    width: 32px;
+    height: 32px;
+  }
+
+  .music-card-action:nth-child(2) {
+    display: none;
+  }
+
+  .music-album-section {
+    padding: 20px;
+  }
+
+  /* =======================================================
+     PLAYER
+     ======================================================= */
+
+  .old-music-player-modal {
+    width:
+      calc(100vw - 24px) !important;
+
+    max-width:
+      calc(100vw - 24px) !important;
+  }
+
+  .old-music-player-modal
+  .ant-modal-content {
+    border-radius:
+      17px !important;
+  }
+
+  .spotify-player-main {
+    grid-template-columns:
+      1fr;
+
+    gap: 30px;
+    padding: 28px;
+  }
+
+  .spotify-large-art {
+    width:
+      min(
+        400px,
+        80vw
+      );
+  }
+
+  .spotify-art-caption {
+    width:
+      min(
+        400px,
+        80vw
+      );
+  }
+
+  .spotify-player-content {
+    width: 100%;
+  }
+
+  .spotify-song-header {
+    margin-bottom: 30px;
+  }
+
+  .spotify-song-text h1 {
+    font-size: 38px;
+  }
+
+  .spotify-library-wrapper {
+    padding:
+      0 28px 28px;
+  }
+
+  /* =======================================================
+     TRACKLIST
+     ======================================================= */
+
+  .spotify-library-wrapper
+  .music-library-row,
+
+  .old-music-player-modal
+  .spotify-library-wrapper
+  .music-card {
+    grid-template-columns:
+      30px
+      52px
+      minmax(0, 1fr)
+      auto !important;
+
+    height: 72px !important;
+    min-height: 72px !important;
+
+    padding:
+      9px 16px !important;
+
+    gap: 12px !important;
+  }
+
+  .spotify-library-wrapper
+  .library-song-image,
+
+  .spotify-library-wrapper
+  .library-song-image-fallback,
+
+  .old-music-player-modal
+  .spotify-library-wrapper
+  .music-card-image-wrapper,
+
+  .old-music-player-modal
+  .spotify-library-wrapper
+  .music-card-image-wrapper img {
+    width: 52px !important;
+    min-width: 52px !important;
+    max-width: 52px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
+  }
+
+  /* =======================================================
+     STICKY
+     ======================================================= */
+
+  .sticky-player-inner {
+    grid-template-columns:
+      1fr;
+
+    gap: 7px;
+  }
+
+  .sticky-song {
+    display: none;
+  }
+
+  .sticky-player-right {
+    display: none;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .music-section {
+    padding:
+      70px 0 115px;
+  }
+
+  .music-container {
+    width:
+      calc(100% - 20px);
+  }
+
+  .music-heading-content h2 {
+    font-size: 36px;
+  }
+
+  .music-heading-content p {
+    font-size: 12px;
+  }
+
+  .music-card-list {
+    padding: 5px;
+    border-radius: 15px;
+  }
+
+  .music-card {
+    min-height: 67px;
+    padding: 8px;
+  }
+
+  .music-card-art {
+    width: 48px;
+    height: 48px;
+    border-radius: 7px;
+  }
+
+  .music-card-info {
+    padding:
+      0 10px;
+  }
+
+  .music-card-title {
+    font-size: 12px;
+  }
+
+  .music-card-artist {
+    font-size: 9px;
+  }
+
+  .music-card-actions {
+    gap: 2px;
+  }
+
+  .music-card-action {
+    width: 29px;
+    height: 29px;
+    border: none;
+    background: transparent;
+  }
+
+  .music-card-action:nth-child(3) {
+    display: none;
+  }
+
+  .music-album-section {
+    margin-top: 35px;
+    padding: 16px;
+    border-radius: 15px;
+  }
+
+  .music-album-header {
+    align-items:
+      flex-start;
+    flex-direction:
+      column;
+    gap: 15px;
+  }
+
+  .music-album-header h2 {
+    font-size: 24px;
+  }
+
+  /* =======================================================
+     PLAYER
+     ======================================================= */
+
+  .old-music-player-modal {
+    width:
+      calc(100vw - 12px) !important;
+
+    max-width:
+      calc(100vw - 12px) !important;
+  }
+
+  .old-music-player-modal
+  .ant-modal-content {
+    border-radius:
+      14px !important;
+  }
+
+  .spotify-player-topbar {
+    padding:
+      15px 17px;
+  }
+
+  .spotify-player-main {
+    padding:
+      20px 17px;
+
+    gap: 24px;
+  }
+
+  .spotify-large-art {
+    width: 78vw;
+    max-width: 320px;
+  }
+
+  .spotify-song-header {
+    align-items:
+      flex-start;
+
+    margin-bottom: 25px;
+  }
+
+  .spotify-song-text h1 {
+    font-size: 30px;
+  }
+
+  .spotify-song-text p {
+    font-size: 14px;
+  }
+
+  .spotify-main-controls {
+    gap: 13px;
+    margin-bottom: 25px;
+  }
+
+  .spotify-play-control {
+    width: 58px;
+    height: 58px;
+    font-size: 23px;
+  }
+
+  .spotify-secondary-control,
+  .spotify-skip-control {
+    width: 34px;
+    height: 34px;
+  }
+
+  .spotify-player-options {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+  .spotify-quick-section {
+    padding: 15px;
+  }
+
+  .spotify-library-wrapper {
+    padding:
+      0 12px 17px;
+  }
+
+  /* =======================================================
+     COMPACT MOBILE TRACKLIST
+     ======================================================= */
+
+  .spotify-library-wrapper
+  .music-library-row,
+
+  .old-music-player-modal
+  .spotify-library-wrapper
+  .music-card {
+    grid-template-columns:
+      25px
+      46px
+      minmax(0, 1fr)
+      auto !important;
+
+    height: 64px !important;
+    min-height: 64px !important;
+
+    padding:
+      8px 10px !important;
+
+    gap: 9px !important;
+  }
+
+  .spotify-library-wrapper
+  .library-song-image,
+
+  .spotify-library-wrapper
+  .library-song-image-fallback,
+
+  .old-music-player-modal
+  .spotify-library-wrapper
+  .music-card-image-wrapper,
+
+  .old-music-player-modal
+  .spotify-library-wrapper
+  .music-card-image-wrapper img {
+    width: 46px !important;
+    min-width: 46px !important;
+    max-width: 46px !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    max-height: 46px !important;
+  }
+
+  .spotify-library-wrapper
+  .library-track-number {
+    width: 25px !important;
+    font-size: 9px !important;
+  }
+
+  .spotify-library-wrapper
+  .library-song-info strong {
+    font-size: 11px !important;
+  }
+
+  .spotify-library-wrapper
+  .library-song-info span {
+    font-size: 9px !important;
+  }
+
+  .spotify-library-wrapper
+  .library-action-button {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+  }
+
+  .spotify-library-wrapper
+  .library-song-actions {
+    gap: 2px !important;
+  }
+
+  /* =======================================================
+     QUEUE MOBILE
+     ======================================================= */
+
+  .spotify-player-shell
+  .music-queue-panel {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+  }
+}

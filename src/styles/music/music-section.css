@@ -1,0 +1,190 @@
+/* =========================================================
+   MUSIC SECTION
+   ========================================================= */
+
+.music-section {
+  position: relative;
+  width: 100%;
+  padding: 110px 0 140px;
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(255, 49, 49, 0.055),
+      transparent 32%
+    ),
+    #050505;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.music-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+  background-size: 54px 54px;
+}
+
+.music-container {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.music-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 34px;
+}
+
+.music-heading-content {
+  min-width: 0;
+}
+
+.section-eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  color: #ff3131;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+}
+
+.music-heading-content h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 0.98;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+}
+
+.music-heading-content p {
+  margin: 12px 0 0;
+  color: #77777f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.music-heading-decoration {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+.music-heading-decoration span {
+  width: 4px;
+  border-radius: 999px;
+  background: #ff3131;
+  opacity: 0.7;
+}
+
+.music-heading-decoration span:nth-child(1) {
+  height: 13px;
+}
+
+.music-heading-decoration span:nth-child(2) {
+  height: 27px;
+}
+
+.music-heading-decoration span:nth-child(3) {
+  height: 19px;
+}
+
+.music-heading-decoration span:nth-child(4) {
+  height: 34px;
+}
+
+.music-heading-decoration span:nth-child(5) {
+  height: 22px;
+}
+
+/* =========================================================
+   HARRY STYLES ALBUM
+   ========================================================= */
+
+.music-album-section {
+  margin-top: 55px;
+  padding: 28px;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.012)
+    );
+  box-shadow:
+    0 25px 70px
+    rgba(0, 0, 0, 0.3);
+}
+
+.music-album-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 22px;
+}
+
+.music-album-header h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.music-album-header p {
+  margin: 7px 0 0;
+  color: #707077;
+  font-size: 12px;
+}
+
+.music-album-close {
+  padding: 8px 12px;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background:
+    rgba(255, 255, 255, 0.025);
+  color: #88888f;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.music-album-close:hover {
+  color: #ffffff;
+  background:
+    rgba(255, 49, 49, 0.1);
+  border-color:
+    rgba(255, 49, 49, 0.3);
+}

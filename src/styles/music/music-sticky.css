@@ -1,0 +1,318 @@
+/* =========================================================
+   STICKY MUSIC PLAYER
+   ========================================================= */
+
+.sticky-music-player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 19000;
+  padding: 10px 18px;
+  background:
+    rgba(8, 8, 8, 0.94);
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 -15px 45px
+    rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.sticky-player-inner {
+  width: min(1280px, 100%);
+  min-height: 64px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 1fr)
+    minmax(320px, 1.7fr)
+    minmax(180px, 1fr);
+  align-items: center;
+  gap: 20px;
+}
+
+/* =========================================================
+   SONG INFO
+   ========================================================= */
+
+.sticky-song {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.sticky-song img,
+.sticky-song-fallback {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+.sticky-song-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #181818;
+  color: #ff3131;
+  font-size: 18px;
+}
+
+.sticky-song-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-song-info strong {
+  overflow: hidden;
+  color: #eeeeef;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sticky-song-info span {
+  margin-top: 3px;
+  overflow: hidden;
+  color: #707077;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   CENTER PLAYER
+   ========================================================= */
+
+.sticky-player-center {
+  min-width: 0;
+}
+
+.sticky-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+}
+
+.sticky-control-button,
+.sticky-play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.sticky-control-button {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  color: #8b8b92;
+  font-size: 14px;
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.sticky-control-button:hover {
+  color: #ffffff;
+  transform:
+    scale(1.1);
+}
+
+.sticky-play-button {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #090909;
+  font-size: 15px;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.sticky-play-button:hover {
+  transform:
+    scale(1.08);
+  background: #ff3131;
+  color: #ffffff;
+}
+
+/* =========================================================
+   PROGRESS BAR
+   ========================================================= */
+
+.sticky-progress {
+  display: grid;
+  grid-template-columns:
+    34px
+    minmax(0, 1fr)
+    34px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.sticky-progress > span {
+  color: #66666d;
+  font-size: 8px;
+  text-align: center;
+}
+
+.sticky-progress input[type="range"] {
+  --progress: 0%;
+
+  width: 100%;
+  height: 3px;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      to right,
+      #ff3131 0%,
+      #ff3131 var(--progress),
+      #36363a var(--progress),
+      #36363a 100%
+    );
+  outline: none;
+  cursor: pointer;
+}
+
+.sticky-progress input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  background: transparent;
+  border-radius: 999px;
+}
+
+.sticky-progress input[type="range"]::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: -3.5px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 0;
+  transition:
+    opacity 0.15s ease;
+}
+
+.sticky-progress input[type="range"]:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.sticky-player-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  color: #77777f;
+  font-size: 13px;
+}
+
+/* =========================================================
+   VOLUME
+   ========================================================= */
+
+.volume-slider {
+  width: 80px;
+  height: 3px;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      to right,
+      #ff3131 0%,
+      #ff3131 var(--volume),
+      #36363a var(--volume),
+      #36363a 100%
+    );
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-runnable-track {
+  height: 3px;
+  background: transparent;
+  border-radius: 999px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  width: 9px;
+  height: 9px;
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: -3px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+/* =========================================================
+   QUEUE BUTTON
+   ========================================================= */
+
+.sticky-queue-button {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  background:
+    rgba(255, 255, 255, 0.025);
+  color: #85858c;
+  cursor: pointer;
+  transition:
+    color 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.sticky-queue-button:hover {
+  color: #ffffff;
+  background:
+    rgba(255, 49, 49, 0.1);
+  border-color:
+    rgba(255, 49, 49, 0.3);
+}
+
+.sticky-queue-button span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: #ff3131;
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 800;
+}

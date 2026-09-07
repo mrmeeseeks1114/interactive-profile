@@ -1,0 +1,12 @@
+/* =========================================================
+   QUEUE
+   ========================================================= */
+
+.spotify-player-shell .music-queue-panel {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: min(380px, calc(100vw - 60px));
+  max-height: 65vh;
+  z-index: 21000;
+}

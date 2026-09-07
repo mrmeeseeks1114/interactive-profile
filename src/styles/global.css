@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -20,6 +22,9 @@ body {
     sans-serif;
 
   background: #080808;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 button,
@@ -35,6 +40,7 @@ textarea {
 
 .app {
   min-height: 100vh;
+  overflow: visible;
 }
 
 .app.dark {
@@ -1332,7 +1338,6 @@ textarea {
     height:
       350px;
   }
-
 }
 
 
@@ -1377,7 +1382,6 @@ textarea {
     font-size:
       48px !important;
   }
-
 }
 
 
@@ -1385,15 +1389,10 @@ textarea {
    SCROLL SAFETY
 ===================================== */
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
+html,
 body {
-  overflow-x: hidden;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #root {

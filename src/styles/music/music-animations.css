@@ -1,0 +1,70 @@
+/* =========================================================
+   MUSIC ANIMATIONS
+   ========================================================= */
+
+@keyframes music-card-bars {
+  from {
+    transform: scaleY(0.45);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes spotify-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spotify-player-in {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(18px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes spotify-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+
+    transform:
+      scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+}
+
+@keyframes spotify-bars {
+  from {
+    transform:
+      scaleY(0.55);
+  }
+
+  to {
+    transform:
+      scaleY(1);
+  }
+}
