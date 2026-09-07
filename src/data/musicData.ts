@@ -249,9 +249,164 @@ const harryStylesSongs: Song[] = [
   },
 ];
 
+/*
+  One Direction — Up All Night (2011)
+*/
+
+export const oneDirectionSongs: Song[] = [
+  {
+    id: "one-direction-what-makes-you-beautiful",
+    title: "What Makes You Beautiful",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/what-makes-you-beautiful.mp3",
+  },
+
+  {
+    id: "one-direction-gotta-be-you",
+    title: "Gotta Be You",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/gotta-be-you.mp3",
+  },
+
+  {
+    id: "one-direction-one-thing",
+    title: "One Thing",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/one-thing.mp3",
+  },
+
+  {
+    id: "one-direction-more-than-this",
+    title: "More Than This",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/more-than-this.mp3",
+  },
+
+  {
+    id: "one-direction-up-all-night",
+    title: "Up All Night",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/up-all-night.mp3",
+  },
+
+  {
+    id: "one-direction-i-want",
+    title: "I Want",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/i-want.mp3",
+  },
+
+  {
+    id: "one-direction-everything-about-you",
+    title: "Everything About You",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/everything-about-you.mp3",
+  },
+
+  {
+    id: "one-direction-same-mistakes",
+    title: "Same Mistakes",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/same-mistakes.mp3",
+  },
+
+  {
+    id: "one-direction-save-you-tonight",
+    title: "Save You Tonight",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/save-you-tonight.mp3",
+  },
+
+  {
+    id: "one-direction-stole-my-heart",
+    title: "Stole My Heart",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/stole-my-heart.mp3",
+  },
+
+  {
+    id: "one-direction-stand-up",
+    title: "Stand Up",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/stand-up.mp3",
+  },
+
+  {
+    id: "one-direction-moments",
+    title: "Moments",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/moments.mp3",
+  },
+
+  {
+    id: "one-direction-taken",
+    title: "Taken",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/taken.mp3",
+  },
+
+  {
+    id: "one-direction-tell-me-a-lie",
+    title: "Tell Me a Lie",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/tell-me-a-lie.mp3",
+  },
+
+  {
+    id: "one-direction-i-should-have-kissed-you",
+    title: "I Should Have Kissed You",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/i-should-have-kissed-you.mp3",
+  },
+
+  {
+    id: "one-direction-i-wish",
+    title: "I Wish",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/i-wish.mp3",
+  },
+
+  {
+    id: "one-direction-another-world",
+    title: "Another World",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/another-world.mp3",
+  },
+
+  {
+    id: "one-direction-na-na-na",
+    title: "Na Na Na",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/up-all-night.jpg",
+    audio: "/music/one-direction/na-na-na.mp3",
+  },
+];
+
+/*
+  Complete music collection
+*/
+
 export const allSongs: Song[] = [
   ...stuckInMyHeadSongs,
   ...harryStylesSongs,
+  ...oneDirectionSongs,
 ];
 
 export const getSongById = (

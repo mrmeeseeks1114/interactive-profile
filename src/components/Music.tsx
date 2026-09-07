@@ -108,7 +108,6 @@ const Music: React.FC<MusicProps> = ({
   ========================= */
 
   const restorePageScroll = () => {
-    // Remove Ant Design scroll-lock classes
     document.body.classList.remove(
       "ant-scrolling-effect"
     );
@@ -121,7 +120,6 @@ const Music: React.FC<MusicProps> = ({
       "ant-scrolling-effect"
     );
 
-    // Restore scrolling
     document.body.style.removeProperty(
       "overflow"
     );
@@ -150,7 +148,6 @@ const Music: React.FC<MusicProps> = ({
       "overflow-x"
     );
 
-    // Restore natural height
     document.body.style.height = "auto";
     document.documentElement.style.height = "auto";
   };
@@ -318,11 +315,8 @@ const Music: React.FC<MusicProps> = ({
 
     closePlayer();
 
-    // Restore immediately
     restorePageScroll();
 
-    // Restore again after Ant Design
-    // finishes its closing animation.
     window.setTimeout(() => {
       restorePageScroll();
     }, 0);
@@ -366,7 +360,15 @@ const Music: React.FC<MusicProps> = ({
   ========================= */
 
   /*
-    Stuck In My Head
+    STUCK IN MY HEAD
+
+    One Direction:
+    - Loved You First
+    - What Makes You Beautiful
+    - One Thing
+
+    The rest of the One Direction songs
+    are album-only.
 
     Harry Styles songs are normally
     excluded because the Harry Styles
@@ -377,13 +379,29 @@ const Music: React.FC<MusicProps> = ({
   */
 
   const mainSongs =
-    allSongs.filter(
-      (song) =>
+    allSongs.filter((song) => {
+      const isOneDirection =
+        song.artist
+          .toLowerCase()
+          .includes("one direction");
+
+      if (isOneDirection) {
+        return (
+          song.id === "loved-you-first" ||
+          song.id ===
+            "one-direction-what-makes-you-beautiful" ||
+          song.id ===
+            "one-direction-one-thing"
+        );
+      }
+
+      return (
         !song.artist
           .toLowerCase()
           .includes("harry styles") ||
         song.id === "sign-of-the-times"
-    );
+      );
+    });
 
   const harryStylesSongs =
     harryStylesFirstAlbum.songs;

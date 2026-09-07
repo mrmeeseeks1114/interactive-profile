@@ -38,14 +38,44 @@ export default function Artists({
   const [selectedAlbum, setSelectedAlbum] =
     useState<SelectedAlbum | null>(null);
 
+  /*
+   * =========================
+   * MUSIC SONG ID MAPPING
+   * =========================
+   */
+
   const getMusicSongId = (
     artist: ArtistData,
     songId: string
   ) => {
+    /*
+     * Loved You First already exists in
+     * Stuck In My Head as:
+     *
+     * loved-you-first
+     *
+     * So use that exact same ID instead of
+     * creating one-direction-loved-you-first.
+     */
+    if (
+      artist.id === "one-direction" &&
+      songId === "loved-you-first"
+    ) {
+      return "loved-you-first";
+    }
+
+    /*
+     * Harry Styles songs use:
+     * harry-song-id
+     */
     if (artist.id === "harry-styles") {
       return `harry-${songId}`;
     }
 
+    /*
+     * One Direction songs use:
+     * one-direction-song-id
+     */
     if (artist.id === "one-direction") {
       return `one-direction-${songId}`;
     }
@@ -63,6 +93,7 @@ export default function Artists({
     return (
       <section className="artists-section">
         <div className="artists-container">
+
           <div className="artists-heading">
             <span className="artists-eyebrow">
               MY MUSIC
@@ -113,6 +144,7 @@ export default function Artists({
               </button>
             ))}
           </div>
+
         </div>
       </section>
     );
@@ -128,6 +160,7 @@ export default function Artists({
     return (
       <section className="artists-section">
         <div className="artists-container">
+
           <button
             className="artists-back-button"
             onClick={() => setSelectedAlbum(null)}
@@ -215,6 +248,7 @@ export default function Artists({
               )}
             </div>
           )}
+
         </div>
       </section>
     );
@@ -229,6 +263,7 @@ export default function Artists({
   return (
     <section className="artists-section">
       <div className="artists-container">
+
         <button
           className="artists-back-button"
           onClick={() => {
@@ -242,6 +277,7 @@ export default function Artists({
         </button>
 
         <div className="artist-page-header">
+
           <div className="artist-page-image-wrapper">
             <img
               src={selectedArtist.image}
@@ -263,6 +299,7 @@ export default function Artists({
               {selectedArtist.description}
             </p>
           </div>
+
         </div>
 
         {/* =========================
@@ -270,6 +307,7 @@ export default function Artists({
             ========================= */}
 
         <div className="artist-subsection">
+
           <div className="artist-section-title">
             <div>
               <span>POPULAR</span>
@@ -288,6 +326,7 @@ export default function Artists({
           </div>
 
           <div className="popular-song-list">
+
             {selectedArtist.popularSongs.map(
               (song, index) => (
                 <button
@@ -302,6 +341,7 @@ export default function Artists({
                     )
                   }
                 >
+
                   <span className="popular-number">
                     {String(index + 1).padStart(
                       2,
@@ -324,9 +364,11 @@ export default function Artists({
                   <span className="popular-play">
                     <PlayCircleFilled />
                   </span>
+
                 </button>
               )
             )}
+
           </div>
         </div>
 
@@ -335,6 +377,7 @@ export default function Artists({
             ========================= */}
 
         <div className="artist-subsection">
+
           <div className="artist-section-title">
             <div>
               <span>DISCOGRAPHY</span>
@@ -348,6 +391,7 @@ export default function Artists({
           </div>
 
           <div className="album-grid">
+
             {selectedArtist.albums.map((album) => (
               <button
                 key={album.id}
@@ -362,7 +406,9 @@ export default function Artists({
                   }
                 }}
               >
+
                 <div className="album-card-image-wrapper">
+
                   {album.image ? (
                     <img
                       src={album.image}
@@ -394,9 +440,11 @@ export default function Artists({
                       <PlayCircleFilled />
                     </div>
                   )}
+
                 </div>
 
                 <div className="album-card-info">
+
                   <h3>{album.title}</h3>
 
                   <p>
@@ -406,11 +454,15 @@ export default function Artists({
                       <> • Coming Soon</>
                     )}
                   </p>
+
                 </div>
+
               </button>
             ))}
+
           </div>
         </div>
+
       </div>
     </section>
   );
