@@ -26,7 +26,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "loved-you-first",
     title: "Loved You First",
     artist: "One Direction",
-    image: "/src/assets/loved-you-first.jpg",
+    image: "/music/images/loved-you-first.jpg",
     audio: "/music/loved-you-first.mp3",
     parts: [
       { label: "INTRO", time: 8 },
@@ -40,7 +40,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "the-girl-is-mine",
     title: "The Girl Is Mine",
     artist: "Michael Jackson & Paul McCartney",
-    image: "/src/assets/the-girl-is-mine.jpg",
+    image: "/music/images/the-girl-is-mine.jpg",
     audio: "/music/the-girl-is-mine.mp3",
     parts: [
       { label: "INTRO", time: 14 },
@@ -54,7 +54,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "sign-of-the-times",
     title: "Sign of the Times",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/sign-of-the-times.mp3",
     parts: [
       { label: "INTRO", time: 17 },
@@ -68,7 +68,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "whos-loving-you",
     title: "Who's Loving You",
     artist: "The Jackson 5",
-    image: "/src/assets/whos-loving-you.jpg",
+    image: "/music/images/whos-loving-you.jpg",
     audio: "/music/whos-loving-you.mp3",
     parts: [
       { label: "INTRO", time: 10 },
@@ -80,7 +80,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "dance-with-me",
     title: "Dance With Me",
     artist: "Dance With Me",
-    image: "/src/assets/dance-with-me.jpg",
+    image: "/music/images/dance-with-me.jpg",
     audio: "/music/dance-with-me.mp3",
     parts: [],
   },
@@ -89,7 +89,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "god-was-showing-off",
     title: "God Was Showing Off",
     artist: "God Was Showing Off",
-    image: "/src/assets/god-was-showing-off.jpg",
+    image: "/music/images/god-was-showing-off.jpg",
     audio: "/music/god-was-showing-off.mp3",
     parts: [
       { label: "INTRO", time: 14 },
@@ -103,7 +103,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "you-rock-my-world",
     title: "You Rock My World",
     artist: "Michael Jackson",
-    image: "/src/assets/you-rock-my-world.jpg",
+    image: "/music/images/you-rock-my-world.jpg",
     audio: "/music/you-rock-my-world.mp3",
     parts: [
       { label: "INTRO", time: 29 },
@@ -114,7 +114,7 @@ export const stuckInMyHeadSongs: Song[] = [
     id: "butterflies",
     title: "Butterflies",
     artist: "Michael Jackson",
-    image: "/src/assets/butterflies.jpg",
+    image: "/music/images/butterflies.jpg",
     audio: "/music/butterflies.mp3",
     parts: [],
   },
@@ -129,7 +129,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-meet-me-in-the-hallway",
     title: "Meet Me in the Hallway",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/meet-me-in-the-hallway.mp3",
     parts: [
       { label: "INTRO", time: 8 },
@@ -142,7 +142,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-sign-of-the-times",
     title: "Sign of the Times",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/sign-of-the-times.mp3",
     parts: [
       { label: "INTRO", time: 17 },
@@ -156,7 +156,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-carolina",
     title: "Carolina",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/carolina.mp3",
     parts: [
       { label: "INTRO", time: 8 },
@@ -168,8 +168,8 @@ const harryStylesSongs: Song[] = [
     id: "harry-two-ghosts",
     title: "Two Ghosts",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
-    audio: "/music/harry-styles/hs1/two-ghosts.mp3",
+    image: "/music/images/harry-styles.jpg",
+    audio: "/music/harry-styles/hs1/two-ghost.mp3",
     parts: [
       { label: "INTRO", time: 10 },
       { label: "CHORUS", time: 45 },
@@ -180,7 +180,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-sweet-creature",
     title: "Sweet Creature",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/sweet-creature.mp3",
     parts: [
       { label: "INTRO", time: 8 },
@@ -192,11 +192,11 @@ const harryStylesSongs: Song[] = [
     id: "harry-only-angel",
     title: "Only Angel",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/only-angel.mp3",
     parts: [
-      { label: "INTRO", time: 5 },
-      { label: "CHORUS", time: 45 },
+      { label: "INTRO", time: 53 },
+      { label: "CHORUS", time: 105 },
     ],
   },
 
@@ -204,7 +204,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-kiwi",
     title: "Kiwi",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/kiwi.mp3",
     parts: [
       { label: "INTRO", time: 5 },
@@ -216,7 +216,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-ever-since-new-york",
     title: "Ever Since New York",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/ever-since-new-york.mp3",
     parts: [
       { label: "INTRO", time: 8 },
@@ -228,7 +228,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-woman",
     title: "Woman",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/woman.mp3",
     parts: [
       { label: "INTRO", time: 8 },
@@ -240,7 +240,7 @@ const harryStylesSongs: Song[] = [
     id: "harry-from-the-dining-table",
     title: "From the Dining Table",
     artist: "Harry Styles",
-    image: "/src/assets/artists/harry-styles/albums/harry-styles.jpg",
+    image: "/music/images/harry-styles.jpg",
     audio: "/music/harry-styles/hs1/from-the-dining-table.mp3",
     parts: [
       { label: "INTRO", time: 8 },
