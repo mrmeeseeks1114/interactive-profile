@@ -38,25 +38,22 @@ export default function Artists({
   const [selectedAlbum, setSelectedAlbum] =
     useState<SelectedAlbum | null>(null);
 
-  /*
-   * =========================
-   * MUSIC SONG ID MAPPING
-   * =========================
-   */
+  /* =========================
+      MUSIC SONG ID MAPPING
+  ========================= */
 
   const getMusicSongId = (
     artist: ArtistData,
     songId: string
   ) => {
     /*
-     * Loved You First already exists in
-     * Stuck In My Head as:
-     *
-     * loved-you-first
-     *
-     * So use that exact same ID instead of
-     * creating one-direction-loved-you-first.
-     */
+      Loved You First already exists in
+      Stuck In My Head as:
+
+      loved-you-first
+
+      Use that exact same ID.
+    */
     if (
       artist.id === "one-direction" &&
       songId === "loved-you-first"
@@ -65,17 +62,19 @@ export default function Artists({
     }
 
     /*
-     * Harry Styles songs use:
-     * harry-song-id
-     */
+      Harry Styles songs use:
+
+      harry-song-id
+    */
     if (artist.id === "harry-styles") {
       return `harry-${songId}`;
     }
 
     /*
-     * One Direction songs use:
-     * one-direction-song-id
-     */
+      One Direction songs use:
+
+      one-direction-song-id
+    */
     if (artist.id === "one-direction") {
       return `one-direction-${songId}`;
     }
@@ -83,11 +82,9 @@ export default function Artists({
     return songId;
   };
 
-  /*
-   * =========================
-   * ARTISTS HOME
-   * =========================
-   */
+  /* =========================
+      ARTISTS HOME
+  ========================= */
 
   if (!selectedArtist) {
     return (
@@ -110,6 +107,7 @@ export default function Artists({
             {artists.map((artist) => (
               <button
                 key={artist.id}
+                type="button"
                 className="artist-main-card"
                 onClick={() => {
                   setSelectedArtist(artist);
@@ -150,18 +148,22 @@ export default function Artists({
     );
   }
 
-  /*
-   * =========================
-   * ALBUM PAGE
-   * =========================
-   */
+  /* =========================
+      ALBUM PAGE
+  ========================= */
 
   if (selectedAlbum) {
+    const isLocked =
+      "locked" in selectedAlbum
+        ? Boolean(selectedAlbum.locked)
+        : false;
+
     return (
       <section className="artists-section">
         <div className="artists-container">
 
           <button
+            type="button"
             className="artists-back-button"
             onClick={() => setSelectedAlbum(null)}
           >
@@ -174,22 +176,27 @@ export default function Artists({
 
           <div className="album-header album-header-no-cover">
             <div className="album-header-info">
+
               <span className="artist-eyebrow">
                 ALBUM
               </span>
 
-              <h1>{selectedAlbum.title}</h1>
+              <h1>
+                {selectedAlbum.title}
+              </h1>
 
               <p>
-                {selectedAlbum.artist}{" "}
+                {selectedArtist.name}{" "}
                 <span>•</span>{" "}
                 {selectedAlbum.year}
               </p>
+
             </div>
           </div>
 
-          {selectedAlbum.locked ? (
+          {isLocked ? (
             <div className="album-coming-soon">
+
               <div className="coming-soon-icon">
                 <LockOutlined />
               </div>
@@ -204,13 +211,16 @@ export default function Artists({
                 i'm still adding the songs from this
                 album.
               </p>
+
             </div>
           ) : (
             <div className="album-song-list">
+
               {selectedAlbum.songs.map(
                 (song, index) => (
                   <button
                     key={song.id}
+                    type="button"
                     className="album-song-row"
                     onClick={() =>
                       onPlaySong(
@@ -246,6 +256,7 @@ export default function Artists({
                   </button>
                 )
               )}
+
             </div>
           )}
 
@@ -254,17 +265,16 @@ export default function Artists({
     );
   }
 
-  /*
-   * =========================
-   * ARTIST PROFILE
-   * =========================
-   */
+  /* =========================
+      ARTIST PROFILE
+  ========================= */
 
   return (
     <section className="artists-section">
       <div className="artists-container">
 
         <button
+          type="button"
           className="artists-back-button"
           onClick={() => {
             setSelectedArtist(null);
@@ -273,12 +283,15 @@ export default function Artists({
         >
           <ArrowLeftOutlined />
 
-          <span>Back to Artists</span>
+          <span>
+            Back to Artists
+          </span>
         </button>
 
         <div className="artist-page-header">
 
           <div className="artist-page-image-wrapper">
+
             <img
               src={selectedArtist.image}
               alt={selectedArtist.name}
@@ -286,29 +299,35 @@ export default function Artists({
             />
 
             <div className="artist-image-glow" />
+
           </div>
 
           <div className="artist-page-info">
+
             <span className="artist-eyebrow">
               ARTIST
             </span>
 
-            <h1>{selectedArtist.name}</h1>
+            <h1>
+              {selectedArtist.name}
+            </h1>
 
             <p>
               {selectedArtist.description}
             </p>
+
           </div>
 
         </div>
 
         {/* =========================
             POPULAR
-            ========================= */}
+        ========================= */}
 
         <div className="artist-subsection">
 
           <div className="artist-section-title">
+
             <div>
               <span>POPULAR</span>
 
@@ -319,10 +338,11 @@ export default function Artists({
               {selectedArtist.popularSongs.length}{" "}
               song
               {selectedArtist.popularSongs.length !==
-                1
+              1
                 ? "s"
                 : ""}
             </small>
+
           </div>
 
           <div className="popular-song-list">
@@ -331,6 +351,7 @@ export default function Artists({
               (song, index) => (
                 <button
                   key={song.id}
+                  type="button"
                   className="popular-song-row"
                   onClick={() =>
                     onPlaySong(
@@ -356,9 +377,15 @@ export default function Artists({
                   />
 
                   <div className="popular-song-info">
-                    <h3>{song.title}</h3>
 
-                    <p>{song.artist}</p>
+                    <h3>
+                      {song.title}
+                    </h3>
+
+                    <p>
+                      {song.artist}
+                    </p>
+
                   </div>
 
                   <span className="popular-play">
@@ -374,11 +401,12 @@ export default function Artists({
 
         {/* =========================
             ALBUMS
-            ========================= */}
+        ========================= */}
 
         <div className="artist-subsection">
 
           <div className="artist-section-title">
+
             <div>
               <span>DISCOGRAPHY</span>
 
@@ -388,79 +416,94 @@ export default function Artists({
             <small>
               {selectedArtist.albums.length} albums
             </small>
+
           </div>
 
           <div className="album-grid">
 
-            {selectedArtist.albums.map((album) => (
-              <button
-                key={album.id}
-                className={`album-card ${
-                  album.locked
-                    ? "locked-album"
-                    : ""
-                }`}
-                onClick={() => {
-                  if (!album.locked) {
-                    setSelectedAlbum(album);
-                  }
-                }}
-              >
+            {selectedArtist.albums.map(
+              (album) => {
 
-                <div className="album-card-image-wrapper">
+                const isLocked =
+                  "locked" in album
+                    ? Boolean(album.locked)
+                    : false;
 
-                  {album.image ? (
-                    <img
-                      src={album.image}
-                      alt={album.title}
-                      className="album-card-image"
-                    />
-                  ) : (
-                    <div className="album-placeholder">
-                      <LockOutlined />
+                return (
+                  <button
+                    key={album.id}
+                    type="button"
+                    className={`album-card ${
+                      isLocked
+                        ? "locked-album"
+                        : ""
+                    }`}
+                    onClick={() => {
+                      if (!isLocked) {
+                        setSelectedAlbum(album);
+                      }
+                    }}
+                  >
+
+                    <div className="album-card-image-wrapper">
+
+                      {album.image ? (
+                        <img
+                          src={album.image}
+                          alt={album.title}
+                          className="album-card-image"
+                        />
+                      ) : (
+                        <div className="album-placeholder">
+                          <LockOutlined />
+                        </div>
+                      )}
+
+                      {isLocked && (
+                        <>
+                          <div className="album-card-dark" />
+
+                          <div className="album-lock">
+                            <LockOutlined />
+                          </div>
+
+                          <span className="album-locked-label">
+                            COMING SOON
+                          </span>
+                        </>
+                      )}
+
+                      {!isLocked && (
+                        <div className="album-hover-play">
+                          <PlayCircleFilled />
+                        </div>
+                      )}
+
                     </div>
-                  )}
 
-                  {album.locked && (
-                    <>
-                      <div className="album-card-dark" />
+                    <div className="album-card-info">
 
-                      <div className="album-lock">
-                        <LockOutlined />
-                      </div>
+                      <h3>
+                        {album.title}
+                      </h3>
 
-                      <span className="album-locked-label">
-                        COMING SOON
-                      </span>
-                    </>
-                  )}
+                      <p>
+                        {album.year}
 
-                  {!album.locked && (
-                    <div className="album-hover-play">
-                      <PlayCircleFilled />
+                        {isLocked && (
+                          <> • Coming Soon</>
+                        )}
+                      </p>
+
                     </div>
-                  )}
 
-                </div>
-
-                <div className="album-card-info">
-
-                  <h3>{album.title}</h3>
-
-                  <p>
-                    {album.year}
-
-                    {album.locked && (
-                      <> • Coming Soon</>
-                    )}
-                  </p>
-
-                </div>
-
-              </button>
-            ))}
+                  </button>
+                );
+              }
+            )}
 
           </div>
+
         </div>
 
       </div>

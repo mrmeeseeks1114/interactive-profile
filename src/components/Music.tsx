@@ -30,6 +30,7 @@ import MusicPlayer from "./music/MusicPlayer";
 import MusicQueue from "./music/MusicQueue";
 import MusicLibrary from "./music/MusicLibrary";
 import MusicContextMenu from "./music/MusicContextMenu";
+import GoToSongs from "./GoToSongs";
 
 type MusicProps = {
   musicRequest?: MusicRequest | null;
@@ -291,18 +292,20 @@ const Music: React.FC<MusicProps> = ({
       OPEN PLAYER
   ========================= */
 
-  const handleOpenPlayer = (
-    song: Song
-  ) => {
-    if (
-      selectedSongId !== song.id
-    ) {
-      changeSong(
-        song.id,
-        false
-      );
-    }
+  /*
+    IMPORTANT:
 
+    This ONLY opens the player.
+
+    It does NOT change the current song.
+
+    So if Loved You First is currently
+    playing and you click "Open Player"
+    on another song, the player will still
+    show Loved You First.
+  */
+
+  const handleOpenPlayer = () => {
     setPlayerOpen(true);
   };
 
@@ -413,6 +416,25 @@ const Music: React.FC<MusicProps> = ({
   const modalOpen =
     isOpen || playerOpen;
 
+  /*
+    IMPORTANT:
+    Only the tracklist INSIDE the opened
+    Music Player is sorted alphabetically.
+
+    allSongs itself is NOT changed.
+  */
+  const alphabetizedTracklist = [
+    ...allSongs,
+  ].sort((a, b) =>
+    a.title.localeCompare(
+      b.title,
+      undefined,
+      {
+        sensitivity: "base",
+      }
+    )
+  );
+
   return (
     <section
       id="music"
@@ -471,7 +493,7 @@ const Music: React.FC<MusicProps> = ({
                   handleSongClick(song)
                 }
                 onOpenPlayer={() =>
-                  handleOpenPlayer(song)
+                  handleOpenPlayer()
                 }
                 onContextMenu={
                   handleContextMenu
@@ -480,6 +502,29 @@ const Music: React.FC<MusicProps> = ({
             )
           )}
         </div>
+
+        {/* =========================
+            GO-TO SONGS
+        ========================= */}
+
+        <GoToSongs
+          songs={mainSongs}
+          selectedSongId={
+            selectedSongId
+          }
+          isPlaying={
+            isPlaying
+          }
+          onPlay={(songId) =>
+            changeSong(
+              songId,
+              true
+            )
+          }
+          onOpenPlayer={
+            handleOpenPlayer
+          }
+        />
 
         {/* =========================
             HARRY STYLES ALBUM
@@ -517,7 +562,9 @@ const Music: React.FC<MusicProps> = ({
             </div>
 
             <MusicLibrary
-              songs={harryStylesSongs}
+              songs={
+                harryStylesSongs
+              }
               selectedSongId={
                 selectedSongId
               }
@@ -549,9 +596,15 @@ const Music: React.FC<MusicProps> = ({
       ========================= */}
 
       <MusicContextMenu
-        song={contextMenuSong}
-        x={contextMenuPosition.x}
-        y={contextMenuPosition.y}
+        song={
+          contextMenuSong
+        }
+        x={
+          contextMenuPosition.x
+        }
+        y={
+          contextMenuPosition.y
+        }
         visible={
           contextMenuVisible
         }
@@ -594,7 +647,9 @@ const Music: React.FC<MusicProps> = ({
         <div className="old-music-player">
 
           <MusicPlayer
-            song={selectedSong}
+            song={
+              selectedSong
+            }
             isPlaying={
               isPlaying
             }
@@ -657,7 +712,9 @@ const Music: React.FC<MusicProps> = ({
 
           <div className="spotify-library-wrapper">
             <MusicLibrary
-              songs={allSongs}
+              songs={
+                alphabetizedTracklist
+              }
               selectedSongId={
                 selectedSongId
               }
@@ -688,7 +745,9 @@ const Music: React.FC<MusicProps> = ({
 
           {queueOpen && (
             <MusicQueue
-              queue={queue}
+              queue={
+                queue
+              }
               onPlay={
                 handleQueuePlay
               }

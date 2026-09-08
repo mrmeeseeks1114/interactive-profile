@@ -14,11 +14,9 @@ export type Song = {
 };
 
 /*
-  Main music collection.
-
-  IMPORTANT:
-  - Keep queue empty by default.
-  - Songs are only added to the queue when you manually add them.
+  =====================================================
+  STUCK IN MY HEAD
+  =====================================================
 */
 
 export const stuckInMyHeadSongs: Song[] = [
@@ -121,7 +119,9 @@ export const stuckInMyHeadSongs: Song[] = [
 ];
 
 /*
-  Harry Styles — Harry Styles (2017)
+  =====================================================
+  HARRY STYLES — HARRY STYLES (2017)
+  =====================================================
 */
 
 const harryStylesSongs: Song[] = [
@@ -250,7 +250,13 @@ const harryStylesSongs: Song[] = [
 ];
 
 /*
-  One Direction — Up All Night (2011)
+  =====================================================
+  ONE DIRECTION — UP ALL NIGHT (2011)
+  =====================================================
+
+  Audio files are now inside:
+
+  public/music/one-direction/up-all-night/
 */
 
 export const oneDirectionSongs: Song[] = [
@@ -259,7 +265,7 @@ export const oneDirectionSongs: Song[] = [
     title: "What Makes You Beautiful",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/what-makes-you-beautiful.mp3",
+    audio: "/music/one-direction/up-all-night/what-makes-you-beautiful.mp3",
   },
 
   {
@@ -267,7 +273,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Gotta Be You",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/gotta-be-you.mp3",
+    audio: "/music/one-direction/up-all-night/gotta-be-you.mp3",
   },
 
   {
@@ -275,7 +281,7 @@ export const oneDirectionSongs: Song[] = [
     title: "One Thing",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/one-thing.mp3",
+    audio: "/music/one-direction/up-all-night/one-thing.mp3",
   },
 
   {
@@ -283,7 +289,7 @@ export const oneDirectionSongs: Song[] = [
     title: "More Than This",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/more-than-this.mp3",
+    audio: "/music/one-direction/up-all-night/more-than-this.mp3",
   },
 
   {
@@ -291,7 +297,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Up All Night",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/up-all-night.mp3",
+    audio: "/music/one-direction/up-all-night/up-all-night.mp3",
   },
 
   {
@@ -299,7 +305,7 @@ export const oneDirectionSongs: Song[] = [
     title: "I Want",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/i-want.mp3",
+    audio: "/music/one-direction/up-all-night/i-want.mp3",
   },
 
   {
@@ -307,7 +313,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Everything About You",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/everything-about-you.mp3",
+    audio: "/music/one-direction/up-all-night/everything-about-you.mp3",
   },
 
   {
@@ -315,7 +321,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Same Mistakes",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/same-mistakes.mp3",
+    audio: "/music/one-direction/up-all-night/same-mistakes.mp3",
   },
 
   {
@@ -323,7 +329,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Save You Tonight",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/save-you-tonight.mp3",
+    audio: "/music/one-direction/up-all-night/save-you-tonight.mp3",
   },
 
   {
@@ -331,7 +337,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Stole My Heart",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/stole-my-heart.mp3",
+    audio: "/music/one-direction/up-all-night/stole-my-heart.mp3",
   },
 
   {
@@ -339,7 +345,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Stand Up",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/stand-up.mp3",
+    audio: "/music/one-direction/up-all-night/stand-up.mp3",
   },
 
   {
@@ -347,7 +353,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Moments",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/moments.mp3",
+    audio: "/music/one-direction/up-all-night/moments.mp3",
   },
 
   {
@@ -355,7 +361,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Taken",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/taken.mp3",
+    audio: "/music/one-direction/up-all-night/taken.mp3",
   },
 
   {
@@ -363,7 +369,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Tell Me a Lie",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/tell-me-a-lie.mp3",
+    audio: "/music/one-direction/up-all-night/tell-me-a-lie.mp3",
   },
 
   {
@@ -371,7 +377,7 @@ export const oneDirectionSongs: Song[] = [
     title: "I Should Have Kissed You",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/i-should-have-kissed-you.mp3",
+    audio: "/music/one-direction/up-all-night/i-should-have-kissed-you.mp3",
   },
 
   {
@@ -379,7 +385,7 @@ export const oneDirectionSongs: Song[] = [
     title: "I Wish",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/i-wish.mp3",
+    audio: "/music/one-direction/up-all-night/i-wish.mp3",
   },
 
   {
@@ -387,7 +393,7 @@ export const oneDirectionSongs: Song[] = [
     title: "Another World",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/another-world.mp3",
+    audio: "/music/one-direction/up-all-night/another-world.mp3",
   },
 
   {
@@ -395,19 +401,208 @@ export const oneDirectionSongs: Song[] = [
     title: "Na Na Na",
     artist: "One Direction",
     image: "/artists/one-direction/albums/up-all-night.jpg",
-    audio: "/music/one-direction/na-na-na.mp3",
+    audio: "/music/one-direction/up-all-night/na-na-na.mp3",
   },
 ];
 
 /*
-  Complete music collection
+  =====================================================
+  ONE DIRECTION — TAKE ME HOME (2012)
+  =====================================================
+
+  These IDs are intentionally WITHOUT the
+  "one-direction-" prefix here.
+
+  Artists.tsx converts them to:
+
+  one-direction-back-for-you
+  one-direction-change-my-mind
+  etc.
+
+  This also keeps the album data reusable.
+*/
+
+export const takeMeHomeSongs: Song[] = [
+  {
+    id: "back-for-you",
+    title: "Back for You",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/back-for-you.mp3",
+  },
+
+  {
+    id: "cmon-cmon",
+    title: "C'mon, C'mon",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/c'mon-c'mon.mp3",
+  },
+
+  {
+    id: "change-my-mind",
+    title: "Change My Mind",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/change-my-mind.mp3",
+  },
+
+  {
+    id: "heart-attack",
+    title: "Heart Attack",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/heart-attack.mp3",
+  },
+
+  {
+    id: "i-would",
+    title: "I Would",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/i-would.mp3",
+  },
+
+  {
+    id: "irresistible",
+    title: "Irresistible",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/irresistible.mp3",
+  },
+
+  {
+    id: "kiss-you",
+    title: "Kiss You",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/kiss-you.mp3",
+  },
+
+  {
+    id: "last-first-kiss",
+    title: "Last First Kiss",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/last-first-kiss.mp3",
+  },
+
+  {
+    id: "little-things",
+    title: "Little Things",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/little-things.mp3",
+  },
+
+  {
+    id: "live-while-were-young",
+    title: "Live While We're Young",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/live-while-were-young.mp3",
+  },
+
+  {
+    id: "magic",
+    title: "Magic",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/magic.mp3",
+  },
+
+  {
+    id: "nobody-compares",
+    title: "Nobody Compares",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/nobody-compares.mp3",
+  },
+
+  {
+    id: "over-again",
+    title: "Over Again",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/over-again.mp3",
+  },
+
+  {
+    id: "rock-me",
+    title: "Rock Me",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/rock-me.mp3",
+  },
+
+  {
+    id: "shes-not-afraid",
+    title: "She's Not Afraid",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/she's-not-afraid.mp3",
+  },
+
+  {
+    id: "still-the-one",
+    title: "Still the One",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/still-the-one.mp3",
+  },
+
+  {
+    id: "summer-love",
+    title: "Summer Love",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/summer-love.mp3",
+  },
+
+  {
+    id: "they-dont-know-about-us",
+    title: "They Don't Know About Us",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/they-don't-know-about-us.mp3",
+  },
+
+  {
+    id: "truly-madly-deeply",
+    title: "Truly Madly Deeply",
+    artist: "One Direction",
+    image: "/artists/one-direction/albums/take-me-home.jpg",
+    audio: "/music/one-direction/take-me-home/truly-madly-deeply.mp3",
+  },
+];
+
+/*
+  =====================================================
+  COMPLETE MUSIC COLLECTION
+  =====================================================
 */
 
 export const allSongs: Song[] = [
   ...stuckInMyHeadSongs,
   ...harryStylesSongs,
   ...oneDirectionSongs,
+
+  /*
+    IMPORTANT:
+    Prefix Take Me Home IDs because Artists.tsx
+    sends one-direction-${songId}.
+  */
+  ...takeMeHomeSongs.map((song) => ({
+    ...song,
+    id: `one-direction-${song.id}`,
+  })),
 ];
+
+/*
+  =====================================================
+  SONG LOOKUP
+  =====================================================
+*/
 
 export const getSongById = (
   songId: string
